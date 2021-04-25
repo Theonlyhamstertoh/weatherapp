@@ -5,7 +5,286 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+  <section class='data_wrapper'>
+    <section class='message_section'>
+       <div class='searchbar'>
+        <input type='text' class='input_text textFS' placeholder="London">
+        <input type='button' class='input_button textFS' value='Search'>
+      </div>
+      
+      <div class='btnWrapper'>
+        <input type='button' class='message_type btn' value='Authentic'>
+        <input type='button' class='theme_picker btn ' value='Switch Theme'>
+      </div>
+      <div class='message_board messageFS'>
+        <h2 class='message_top messageFS'>It's really.</h2> 
+        <h2 class='message_weatherType messageFS'>cloudy.</h2>
+        <h2 class='message_bottom messageFS'>now.</h2>
+      </div>
+      <p class='message_caption textFS'>You can look outside for more information</p> 
+     </section>
+    <section class='today_section'>
+      <div class='animatedWeatherArea'>
+        <img class='icons' id='regularCloud' src='/src/img/weather/cloudy/regularCloud.svg'>
+        <img class='icons' id='medCloud' src='./img/weather/cloudy/medCloud.svg'>
+        <img class='icons' id='smallCloud' src='./img/weather/cloudy/smallCloud.svg'>  
+      </div>
+      <div class='WI_area'>
+        <div class='WI_time-wrapper'>
+          <h4 class='WI_time skinnyFS'>8:52PM</h4>
+          <i class='WI_hourDifference'>15 hours ahead</i>
+        </div>
+        <div class='WI_description skinnyFS'>Mostly Cloudy</div>
+        <div class='WI_location cityLocationFS'>Cypress, California</div>
+        <div class='WI_tempWrapper'>
+          <h1 class='WI_temp tempFS'>69</h1>
+          <h4 class='WI_temp-switcher titleFS'>°F  °C</h4>
+          <div class='WI_icon'><img class='medCloud' src='./img/weather/cloudy/medCloud.svg'></div>
+        </div>
+      </div>
+      <div class='WI_e-area'>
+        <div class='WI_e-grid'>
+          <div class='WI_e-item'>
+            <img class='extraInfoIcons' src='./img/icons/wind.svg'>
+            <div class='WI_e-info'>
+              <p class='textFS'>Wind</p>
+              <h4 id='windInfo'class='textFS--bold'>5mph</h4>
+            </div>
+          </div>
+          <div class='WI_e-item'>
+            <img class='extraInfoIcons' src='./img/icons/uvIndex.svg'>
+            <div class='WI_e-info'>
+              <p class='textFS'>UV Index</p>
+              <h4 id='windInfo'class='textFS--bold'>4</h4>
+            </div>
+          </div>
+          <div class='WI_e-item'>
+            <img class='extraInfoIcons' src='./img/icons/feelsLike.svg'>
+            <div class='WI_e-info'>
+              <p class='textFS'>Feels like</p>
+              <h4 id='windInfo'class='textFS--bold'>65°F</h4>
+            </div>
+          </div>
+          <div class='WI_e-item'>
+            <img class='extraInfoIcons' src='./img/icons/chanceOfRain.svg'>
+            <div class='WI_e-info'>
+              <p class='textFS'>Chance of rain</p>
+              <h4 id='windInfo'class='textFS--bold'>65%</h4>
+            </div>
+          </div>
+          <div class='WI_e-item'>
+            <img class='extraInfoIcons' src='./img/icons/visibility.svg'>
+            <div class='WI_e-info'>
+              <p class='textFS'>Visibility</p>
+              <h4 id='windInfo'class='textFS--bold'>50 miles</h4>
+            </div>
+          </div>
+          <div class='WI_e-item'>
+            <img class='extraInfoIcons' src='./img/icons/pressure.svg'>
+            <div class='WI_e-info'>
+              <p class='textFS'>pressure</p>
+              <h4 id='windInfo'class='textFS--bold'>1035hPa</h4>
+            </div>
+          </div>
+          <div class='WI_e-item'>
+            <img class='extraInfoIcons' src='./img/icons/dew-point.svg'>
+            <div class='WI_e-info'>
+              <p class='textFS'>dew point</p>
+              <h4 id='windInfo'class='textFS--bold'>25%</h4>
+            </div>
+          </div>
+          <div class='WI_e-item'>
+            <img class='extraInfoIcons' src='./img/icons/humidity.svg'>
+            <div class='WI_e-info'>
+              <p class='textFS'>humidity</p>
+              <h4 id='windInfo'class='textFS--bold'>55%</h4>
+            </div>
+          </div>
+          
+        </div>
+      </div>
     
+    </section> 
+
+    <section class='forecast_section'>
+      <div class='week_block'>
+        <h4 class='week_title titleFS'>Week Forecast</h4>
+        <ul class='week_forecast-container'>
+          <li class='date titleFS'>
+            <h4 class='date_title dateFS'>Wednesday</h4>
+            <div class='date_icon-temp'>
+              <img class='date_icon smallCloud' src='./img/weather/cloudy/smallCloud.svg' >
+              <h4 class='date_temp'>65°F</h4>
+            </div>
+          </li>
+          <li class='date titleFS'>
+            <h4 class='date_title dateFS'>Wednesday</h4>
+            <div class='date_icon-temp'>
+              <img class='date_icon smallCloud' src='./img/weather/cloudy/smallCloud.svg' >
+              <h4 class='date_temp dateFS'>65°F</h4>
+            </div>
+          </li>
+          <li class='date titleFS'>
+            <h4 class='date_title dateFS'>Wednesday</h4>
+            <div class='date_icon-temp'>
+              <img class='date_icon smallCloud' src='./img/weather/cloudy/smallCloud.svg' >
+              <h4 class='date_temp'>65°F</h4>
+            </div>
+          </li>
+          <li class='date titleFS'>
+            <h4 class='date_title dateFS'>Wednesday</h4>
+            <div class='date_icon-temp'>
+              <img class='date_icon smallCloud' src='./img/weather/cloudy/smallCloud.svg' >
+              <h4 class='date_temp'>65°F</h4>
+            </div>
+          </li>
+          <li class='date titleFS'>
+            <h4 class='date_title dateFS'>Wednesday</h4>
+            <div class='date_icon-temp'>
+              <img class='date_icon smallCloud' src='./img/weather/cloudy/smallCloud.svg' >
+              <h4 class='date_temp'>65°F</h4>
+            </div>
+          </li>
+          <li class='date titleFS'>
+            <h4 class='date_title dateFS'>Wednesday</h4>
+            <div class='date_icon-temp'>
+              <img class='date_icon smallCloud' src='./img/weather/cloudy/smallCloud.svg' >
+              <h4 class='date_temp'>65°F</h4>
+            </div>
+          </li>
+          <li class='date titleFS'>
+            <h4 class='date_title dateFS'>Wednesday</h4>
+            <div class='date_icon-temp'>
+              <img class='date_icon smallCloud' src='./img/weather/cloudy/smallCloud.svg' >
+              <h4 class='date_temp'>65°F</h4>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class='hourly_block'>
+        <h4 class='hour_title titleFS'>Hourly Forecast</h4>
+          <div class='hourly_forecast-container'>
+            <ul class='hourForecastList'> 
+              <li class='hour_item'>
+                <div class='hour_time titleFS'>4pm</div>
+                <div class='hour_icon'><img class='smallCloud' src='./img/weather/cloudy/smallCloud.svg'></div>
+                <div class='hour_temp titleFS'>65°F</div>
+              </li>
+              <li class='hour_item'>
+                <div class='hour_time titleFS'>4pm</div>
+                <div class='hour_icon'><img class='smallCloud' src='./img/weather/cloudy/smallCloud.svg'></div>
+                <div class='hour_temp titleFS'>65°F</div>
+              </li>
+              <li class='hour_item'>
+                <div class='hour_time titleFS'>4pm</div>
+                <div class='hour_icon'><img class='smallCloud' src='./img/weather/cloudy/smallCloud.svg'></div>
+                <div class='hour_temp titleFS'>65°F</div>
+              </li>
+              <li class='hour_item'>
+                <div class='hour_time titleFS'>4pm</div>
+                <div class='hour_icon'><img class='smallCloud' src='./img/weather/cloudy/smallCloud.svg'></div>
+                <div class='hour_temp titleFS'>65°F</div>
+              </li>
+              <li class='hour_item'>
+                <div class='hour_time titleFS'>4pm</div>
+                <div class='hour_icon'><img class='smallCloud' src='./img/weather/cloudy/smallCloud.svg'></div>
+                <div class='hour_temp titleFS'>65°F</div>
+              </li>
+              <li class='hour_item'>
+                <div class='hour_time titleFS'>4pm</div>
+                <div class='hour_icon'><img class='smallCloud' src='./img/weather/cloudy/smallCloud.svg'></div>
+                <div class='hour_temp titleFS'>65°F</div>
+              </li>
+              <li class='hour_item'>
+                <div class='hour_time titleFS'>4pm</div>
+                <div class='hour_icon'><img class='smallCloud' src='./img/weather/cloudy/smallCloud.svg'></div>
+                <div class='hour_temp titleFS'>65°F</div>
+              </li>
+              <li class='hour_item'>
+                <div class='hour_time titleFS'>4pm</div>
+                <div class='hour_icon'><img class='smallCloud' src='./img/weather/cloudy/smallCloud.svg'></div>
+                <div class='hour_temp titleFS'>65°F</div>
+              </li>
+              <li class='hour_item'>
+                <div class='hour_time titleFS'>4pm</div>
+                <div class='hour_icon'><img class='smallCloud' src='./img/weather/cloudy/smallCloud.svg'></div>
+                <div class='hour_temp titleFS'>65°F</div>
+              </li>
+              <li class='hour_item'>
+                <div class='hour_time titleFS'>4pm</div>
+                <div class='hour_icon'><img class='smallCloud' src='./img/weather/cloudy/smallCloud.svg'></div>
+                <div class='hour_temp titleFS'>65°F</div>
+              </li>
+              <li class='hour_item'>
+                <div class='hour_time titleFS'>4pm</div>
+                <div class='hour_icon'><img class='smallCloud' src='./img/weather/cloudy/smallCloud.svg'></div>
+                <div class='hour_temp titleFS'>65°F</div>
+              </li>
+              <li class='hour_item'>
+                <div class='hour_time titleFS'>4pm</div>
+                <div class='hour_icon'><img class='smallCloud' src='./img/weather/cloudy/smallCloud.svg'></div>
+                <div class='hour_temp titleFS'>65°F</div>
+              </li>
+              <li class='hour_item'>
+                <div class='hour_time titleFS'>4pm</div>
+                <div class='hour_icon'><img class='smallCloud' src='./img/weather/cloudy/smallCloud.svg'></div>
+                <div class='hour_temp titleFS'>65°F</div>
+              </li>
+              <li class='hour_item'>
+                <div class='hour_time titleFS'>4pm</div>
+                <div class='hour_icon'><img class='smallCloud' src='./img/weather/cloudy/smallCloud.svg'></div>
+                <div class='hour_temp titleFS'>65°F</div>
+              </li>
+              <li class='hour_item'>
+                <div class='hour_time titleFS'>4pm</div>
+                <div class='hour_icon'><img class='smallCloud' src='./img/weather/cloudy/smallCloud.svg'></div>
+                <div class='hour_temp titleFS'>65°F</div>
+              </li>
+              <li class='hour_item'>
+                <div class='hour_time titleFS'>4pm</div>
+                <div class='hour_icon'><img class='smallCloud' src='./img/weather/cloudy/smallCloud.svg'></div>
+                <div class='hour_temp titleFS'>65°F</div>
+              </li>
+              <li class='hour_item'>
+                <div class='hour_time titleFS'>4pm</div>
+                <div class='hour_icon'><img class='smallCloud' src='./img/weather/cloudy/smallCloud.svg'></div>
+                <div class='hour_temp titleFS'>65°F</div>
+              </li>
+              <li class='hour_item'>
+                <div class='hour_time titleFS'>4pm</div>
+                <div class='hour_icon'><img class='smallCloud' src='./img/weather/cloudy/smallCloud.svg'></div>
+                <div class='hour_temp titleFS'>65°F</div>
+              </li>
+            </ul>                  
+        </div>
+      </div>
+
+     
+    </section> 
+
+  </section>
+  <section class='map_section'></section>
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
 </body>
 </html>
 

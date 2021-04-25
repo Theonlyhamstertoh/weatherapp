@@ -1,0 +1,13 @@
+@mixin resetO-B {
+  outline: none;
+  border: none;
+}
+
+@mixin flexcenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@mixin resetOutline {
+  outline: none;
+}

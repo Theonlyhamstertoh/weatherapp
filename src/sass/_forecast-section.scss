@@ -1,0 +1,73 @@
+@use "var";
+@use "mixin";
+
+.forecast_section {
+  flex-grow: 1;
+  background-color: var.$darkBlue;     
+  padding: 0 30px; 
+  overflow: scroll;
+  min-width: 250px;
+}
+
+.week_block {
+  margin-top: 20px;
+}
+.week_title {
+  margin: 5px;
+}
+.week_forecast-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-direction: column;
+
+}
+.date {
+  background-color: var.$reallylow_opacity;
+  border-radius: 20px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 0;
+}
+.date_icon-temp {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+
+.hourly_block {
+  margin-top: 20px;
+
+}
+.hour_title {
+  margin: 10px 0;
+}
+
+.hourly_forecast-container {
+  border-radius: 20px;
+  padding: 20px 15px;
+  padding-bottom: 0;
+  border-radius: 20px;
+  background-color: var.$reallylow_opacity;
+  
+}
+
+.hourForecastList {
+  display: flex;
+  overflow-x: scroll;
+  flex-direction: row;
+  gap: 40px;
+  padding: 0 0 20px 0;
+}
+.hour_item {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,76 @@
+@use "var";
+@use "mixin";
+
+
+
+.message_section {
+  background-color: var.$darkBlue;
+  flex-grow: 1;
+}
+
+.searchbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 10px;
+}
+
+.input_text {
+  background-color: var.$low_opacity;
+  @include mixin.resetO-B;
+  height: 34px;
+  padding: 2px 10px;
+  width: 100%;
+  border-radius: 10px 0 0 10px;
+  color: var.$medHigh_opacity;
+}
+
+.input_button {
+  background-color: var.$lowMed_opacity;
+  @include mixin.resetO-B;
+  font-family: "Nirmala";
+  font-weight: bold;
+  width: 20%;
+  height: 34px;
+  cursor: pointer;
+  color: var.$medHigh_opacity;
+  border-radius: 0 10px 10px 0;
+  &:hover {
+    background-color: var.$opacity_50;
+  }
+}
+
+
+.btnWrapper {
+  display: flex;
+  gap: 15px;
+  font-family: "Nirmala";
+  margin-top: 50px;
+  margin-left: 30px;
+}
+.btn {
+  letter-spacing: 0.4px;
+  font-size: 14px;
+  padding: 10px;
+  background-color: var.$low_opacity;
+  @include mixin.resetO-B;
+  border-radius: 30px;
+  font-weight: bold;
+  color: var.$medHigh_opacity;
+}
+
+.message_board {
+  margin-left: 30px;
+}
+
+.message_weatherType {
+  color: var.$message_weatherType !important;
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.363);
+}
+
+.message_caption {
+  margin-left: 35px;
+  margin-top: 20px;
+  color: var.$lowMed_opacity !important;
+}
+

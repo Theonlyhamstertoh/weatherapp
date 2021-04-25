@@ -1,0 +1,55 @@
+// if width is greater than 2000px, change gap to like 200px or less if small.
+
+
+@media (max-width: 1008px) {
+  body {
+    background-color: white;
+  }
+  .data_wrapper {
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .date_icon-temp {
+    gap: 10px;
+  }
+  .forecast_section {
+    padding: 0px 0px 0 10px;
+  }
+  .btnWrapper {
+    margin-left: 10px;
+  }
+
+  .message_caption {
+    margin-top: 0px;
+    margin-left: 15px;
+  }
+  
+  .week_forecast-container {
+    gap: 15px;
+  }
+
+  .message_section {
+    padding-bottom: 40px;
+  }
+  
+  .message_board {
+    margin-left: 10px;
+  }
+  .today_section {
+  }
+  
+  .WI_Area {
+    margin: 0;
+  }
+  .WI_e-area {
+    margin: 0 5px;
+  }
+  .forecast_section {
+    padding-bottom: 10px;
+  }
+}
+
+@media (max-width: 500px) {
+
+} 
