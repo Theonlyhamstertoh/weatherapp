@@ -2,7 +2,7 @@
 @use "mixin";
 
 .forecast_section {
-  flex-grow: 1;
+  flex-grow: 4;
   background-color: var.$darkBlue;     
   padding: 0 30px; 
   overflow: scroll;
