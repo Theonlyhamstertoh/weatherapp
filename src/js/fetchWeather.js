@@ -1,17 +1,62 @@
+import { displayWeather } from "./displayWeather";
 
-// first, fetch the city location; second, get the city coord; third, fetch call to oneAPI which contains every data needed, fourth, return to weather data
+const getWeatherData = async (getCoord) => {
+  try {
+    const coords = await getCoord;
+    const fetchData = await fetch(requestWeatherAPI(coords, "imperial"), {
+      mode: "cors",
+    }).then((response) => response.json());
+    return fetchData;
+  } catch (err) {
+    throw new Error(err);
+  }
+};
 
+(async () => {
+  if ("geolocation" in navigator) {
+    const coords = await new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    })
+      .then((result) => {
+        return {
+          lon: result.coords.longitude,
+          lat: result.coords.latitude,
+        };
+      })
+      .catch((reject) => reject);
 
-// function displayData() {}
+    if (coords.code) return coords.message;
+    displayWeather(coords);
+  } else {
+    return;
+  }
+})();
 
-// function getUserLocation() {}
+const fetchUserInputLocation = (() => {
+  const coords = async () => {
+    const response = await fetch(
+      requestCoords(defineSearchType(), { mode: "cors" })
+    ).then((result) => result.json());
+    displayWeather(response.coord);
+  };
 
-// function throwErrorMessage() {}
+  const defineSearchType = () => {
+    const searchInput = document.querySelector(".input_text");
+    const regex = new RegExp("^[0-9]+$");
+    if (regex.test(searchInput.value)) {
+      return `zip=${searchInput.value}`;
+    }
+    return `q=${searchInput.value}`;
+  };
 
-// function kelvinToCelsius() {}
-// function kelvinToFahrenheit() {}
+  const requestCoords = (location) => {
+    return `http://api.openweathermap.org/data/2.5/weather?appid=70d3ce744008d557a872cee31d8820ce&${location}`;
+  };
+  return { coords };
+})();
 
-// there is multiple ways of retrieving data. One way is by city, another by zip code and country, we need to account for all the ways
-// detect if user inputted a coutry
+const requestWeatherAPI = (coords, units) => {
+  return `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&units=${units}&appid=70d3ce744008d557a872cee31d8820ce`;
+};
 
-// There is a ton more you must be doing before you do anything else. First, how are you going to want the website to look? secondly, how are you going to make the functions reusable? Thirdly, how are you going to pass value to other javascript files to get the 7-14 days weather? how are you going to create the DOM element? What kind of humor do you want to add? How can you make the project very unique and funny and creative? What will make this project uniquely to you? Ask these questions before you do anything else. ARe you getting distracted? Are you losing focus?
+export {getWeatherData, fetchUserInputLocation}
