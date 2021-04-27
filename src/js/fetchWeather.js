@@ -59,4 +59,4 @@ const requestWeatherAPI = (coords, units) => {
   return `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&units=${units}&appid=70d3ce744008d557a872cee31d8820ce`;
 };
 
-export {getWeatherData, fetchUserInputLocation}
+export { getWeatherData, fetchUserInputLocation };

@@ -11,6 +11,7 @@ module.exports = merge(commonConfig, {
     path: path.resolve(__dirname, 'dist'),
 
   },
+  stats: "errorDetails: true",
   module: {
     rules: [
       {
@@ -21,11 +22,8 @@ module.exports = merge(commonConfig, {
           'resolve-url-loader',
           'sass-loader',
         ],
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        type: 'asset/resource',
-      },
+      },      
+
     ],
   },
 });

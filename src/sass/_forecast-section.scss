@@ -61,13 +61,13 @@
   display: flex;
   overflow-x: scroll;
   flex-direction: row;
-  gap: 40px;
+  gap: 30px;
   padding: 0 0 20px 0;
 }
 .hour_item {
   display: flex;
   gap: 10px;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }

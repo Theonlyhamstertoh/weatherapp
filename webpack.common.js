@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const APP_DIR = path.resolve(__dirname, './src/js') ;
+
+const APP_DIR = path.resolve(__dirname, './src/js');
 
 module.exports = {
   entry: APP_DIR + "/index.js",
@@ -16,8 +17,6 @@ module.exports = {
     }),
   ],
   output: {
-    // clean: true,
-
   },
   module: {
     rules: [
@@ -25,18 +24,13 @@ module.exports = {
         test: /\.html$/i,
         loader: 'html-loader',
       },
-      // {
-      //   test: /\.s[ac]ss$/i,
-      //   use: [
-      //     'style-loader',
-      //     'css-loader',
-      //     'resolve-url-loader',
-      //     'sass-loader',
-      //   ],
-      // },
       {
-        test: /\/(png|svg|jp?g|gif)$/i,
+        test: /\.(png|svg|jpe?g|gif)$/i,
         type: 'asset',
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
       },
     ],
   },

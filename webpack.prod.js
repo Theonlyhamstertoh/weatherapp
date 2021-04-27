@@ -10,24 +10,17 @@ module.exports = merge(commonConfig, {
         path: path.resolve(__dirname, 'dist'),
         assetModuleFilename: "images/[hash][ext][query]",
     },
-    plugins: [new MiniCssExtractPlugin({ filename: "[name].[contenthas].css"}) ],
+    plugins: [new MiniCssExtractPlugin({ filename: "[name].[contenthash].css"}) ],
     module: {
         rules: [
-            // {
-            //     test: /\.(scss||css)$/i,
-            //     use: [
-            //         MiniCssExtractPlugin.loader, // extract css into file
-            //         "css-loader?",
-            //         "resolve-url-loader",
-            //         "sass-loader",
-            //     ],
-            // },
             {
-                test: /\.(woff|woff2|eot|ttf|otf)$/i,
-                type: 'asset/resource',
-                generator: {
-                    filename: "fonts/[hash][ext][query]"
-                }
+                test: /\.(scss||css)$/i,
+                use: [
+                    MiniCssExtractPlugin.loader, // extract css into file
+                    "css-loader?",
+                    "resolve-url-loader",
+                    "sass-loader",
+                ],
             },
         ]
     }
