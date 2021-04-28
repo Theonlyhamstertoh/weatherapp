@@ -1,126 +1,206 @@
-import {getWeatherData} from "./fetchWeather";
-import {format, fromUnixTime, getHours} from "date-fns";
+import {
+  getWeatherData,
+  fetchCityInfo
+} from "./fetchWeather";
 
-function importAll(r) {
-  return r.keys().map(r);
+import {
+  getCityLocationInfo,
+  getTimeDifference,
+  getCityTime,
+  formatToDay,
+  convertClockTime,
+  formatTemp,
+  getFutureTime,
+} from "./utility";
+
+import { findWeatherIcon, findExtraInfoIcons } from "./getImages";
+
+const weatherItems = {
+  current: [],
+  daily: [],
+  hourly: [],
+};
+
+function clearPrevious() {
+  // clear out previous data
+  weatherItems.current.forEach((item) => {
+    item.remove();
+  });
+
+  weatherItems.daily.forEach((item) => {
+    item.remove();
+  });
+
+  weatherItems.hourly.forEach((item) => {
+    item.remove();
+  });
 }
 
-const images = importAll(require.context('../img/weather', false, /\.(png|jpe?g|svg)$/));
 
-
-
-const saveLocalStorage = () => {};
 
 const displayWeather = async (coords) => {
 
+  console.log(await fetchCityInfo());
   const weatherData = await getWeatherData(coords);
   console.log(weatherData)
-  // displayWeekData(weatherData.daily);
-  // displayCurrentData(weatherData.current);
-  displayHourlyData(weatherData.hourly);
+  const locationInfo = await getCityLocationInfo(
+    coords.lat,
+    coords.lon,
+    weatherData.timezone
+  );
+  const Unixtime = getCityTime(weatherData.timezone_offset);
+  clearPrevious();
+
+  displayWeekData(weatherData.daily);
+  displayCurrentData(
+    weatherData.current,
+    Unixtime,
+    locationInfo,
+    weatherData.hourly[0].pop
+  );
+  displayHourlyData(weatherData.hourly, weatherData.timezone_offset);
 };
 
+function displayWeekData(dailyData) {
+  const dailyContainer = document.querySelector(".week_forecast-container");
+  dailyData.forEach((eachDay) => {
+    const time = formatToDay(eachDay.dt);
+    const icon = findWeatherIcon(eachDay.weather[0].icon);
+    const temp = formatTemp(eachDay.temp.day);
 
-function displayWeekData(weekData) {
-  console.log(weekData.dt, weekData.weather[0].icon, weekData.temp);
-  const time = weekData.dt;
-  const icon = findWeatherIcon(weatherData.weather[0].icon);
-  const temp = weatherData.temp;
+    const createDayDOM = document.createElement("li");
+    createDayDOM.classList.add("date");
+
+    const dayHTML = `
+      <h4 class='date_title dateFS'>${time}</h4>
+      <div class='date_icon-temp'>
+        <img class='date_icon iconSize' src='${icon}' >
+        <h4 class='date_temp dateFS'>${temp}</h4>
+      </div>
+     `;
+
+    const creatDayFRAG = document
+      .createRange()
+      .createContextualFragment(dayHTML);
+
+    createDayDOM.appendChild(creatDayFRAG);
+    weatherItems.daily.push(createDayDOM);
+    dailyContainer.appendChild(createDayDOM);
+  });
 }
 
+function displayCurrentData(todayData, Unixtime, location, rainChance) {
+  const formattime = convertClockTime(Unixtime, "12L");
+  const timeDifference = getTimeDifference(Unixtime);
+  // const state = location.state;
+  // const city = location.cityName;
+  const icon = findWeatherIcon(todayData.weather[0].icon);
+  const description = todayData.weather[0].description; // need to capitalize
+  const wind_speed = todayData.wind_speed; //ned to convert
+  const uv_index = todayData.uvi;
+  const feels_like = todayData.feels_like; //need to convert
+  const dew_point = todayData.dew_point;
+  const humidity = todayData.humidity;
+  const visibility = todayData.visibility; // need to convert
+  const temp = formatTemp(todayData.temp);
+  const pressure = todayData.pressure;
+  const extraWeatherContainer = document.querySelector(".WI_e-area");
+  const extraWeatherGrid = document.createElement("div");
+  extraWeatherGrid.classList.add("WI_e-grid");
+  weatherItems.current.push(extraWeatherGrid);
 
-function displayCurrentData(todayData) {
-  console.log(todayData);
+  const extraWeatherDataHTML = `
+    <div class='WI_e-item'>
+      <img class='extraInfoIcons' src='${findExtraInfoIcons("wind")}'>
+      <div class='WI_e-info'>
+        <p class='textFS'>Wind</p>
+        <h4 id='windInfo'class='textFS--bold'>${wind_speed}</h4>
+      </div>
+    </div>
+    <div class='WI_e-item'>
+      <img class='extraInfoIcons' src='${findExtraInfoIcons("uvi")}'>
+      <div class='WI_e-info'>
+        <p class='textFS'>UV Index</p>
+        <h4 id='windInfo'class='textFS--bold'>${uv_index}</h4>
+      </div>
+    </div>
+    <div class='WI_e-item'>
+      <img class='extraInfoIcons' src='${findExtraInfoIcons("feels_like")}'>
+      <div class='WI_e-info'>
+        <p class='textFS'>Feels like</p>
+        <h4 id='windInfo'class='textFS--bold'>${feels_like}</h4>
+      </div>
+    </div>
+    <div class='WI_e-item'>
+      <img class='extraInfoIcons' src='${findExtraInfoIcons("rain")}'>
+      <div class='WI_e-info'>
+        <p class='textFS'>Chance of rain</p>
+        <h4 id='windInfo'class='textFS--bold'>${rainChance}%</h4>
+      </div>
+    </div>
+    <div class='WI_e-item'>
+      <img class='extraInfoIcons' src='${findExtraInfoIcons("visibility")}'>
+      <div class='WI_e-info'>
+        <p class='textFS'>Visibility</p>
+        <h4 id='windInfo'class='textFS--bold'>${visibility}</h4>
+      </div>
+    </div>
+    <div class='WI_e-item'>
+      <img class='extraInfoIcons' src='${findExtraInfoIcons("pressure")}'>
+      <div class='WI_e-info'>
+        <p class='textFS'>pressure</p>
+        <h4 id='windInfo'class='textFS--bold'>${pressure}</h4>
+      </div>
+    </div>
+    <div class='WI_e-item'>
+      <img class='extraInfoIcons' src='${findExtraInfoIcons("dew")}'>
+      <div class='WI_e-info'>
+        <p class='textFS'>dew point</p>
+        <h4 id='windInfo'class='textFS--bold'>${dew_point}</h4>
+      </div>
+    </div>
+    <div class='WI_e-item'>
+      <img class='extraInfoIcons' src='${findExtraInfoIcons("humidity")}'>
+      <div class='WI_e-info'>
+        <p class='textFS'>humidity</p>
+        <h4 id='windInfo'class='textFS--bold'>${humidity}</h4>
+      </div>
+    </div>`;
+  const createFRAG = document
+    .createRange()
+    .createContextualFragment(extraWeatherDataHTML);
+  extraWeatherGrid.appendChild(createFRAG);
+  extraWeatherContainer.appendChild(extraWeatherGrid);
+
+  // const timeDifference
+  // const biggerIcon
 }
 
 // include sunset and sunrise!!
-function displayHourlyData(hourlyData) {
-  const hourlyContainer = document.querySelector('.hourForecastList');
-  hourlyData.forEach(eachHour => {
-    const time = convertTo12Hours(eachHour.dt);
+function displayHourlyData(hourlyData, offset) {
+  const currentLocationTime = getCityTime(offset);
+  const hourlyContainer = document.querySelector(".hourForecastList");
+  hourlyData.forEach((eachHour) => {
+    const time = getFutureTime(currentLocationTime, eachHour.dt);
     const icon = findWeatherIcon(eachHour.weather[0].icon);
     const temp = formatTemp(eachHour.temp);
 
-    const hourDomArray = [];
-    const createHourDOM = document.createElement('li');
-    createHourDOM.classList.add('hour_item');
-
+    const createHourDOM = document.createElement("li");
+    createHourDOM.classList.add("hour_item");
 
     const hourHTML = `
       <div class='hour_time titleFS'>${time}</div>
       <div class='hour_icon'><img class='iconSize' src='${icon}'></div>
       <div class='hour_temp titleFS'>${temp}</div>
-    `
-    const createHourFRAG = document.createRange().createContextualFragment(hourHTML);
+    `;
+    const createHourFRAG = document
+      .createRange()
+      .createContextualFragment(hourHTML);
 
     createHourDOM.appendChild(createHourFRAG);
+    weatherItems.hourly.push(createHourDOM);
     hourlyContainer.appendChild(createHourDOM);
-  })
+  });
 }
 
-function formatTemp(temperature) {
-  return Math.round(temperature) + currentTempUnit();
-}
-
-// later add a temp unit switcher
-function currentTempUnit() {
-  return '°F';
-}
-function displayMinuteData(minuteData) {
-  console.log(minuteData);
-}
-
-function unixToDate(unixTime) {
-    return fromUnixTime(unixTime);
-
-}
-
-function convertTo12Hours(time) {
-  const date = unixToDate(time);
-  return format(date, 'haaa');
-}
-
-function convertTo24Hours(time) {
-  const date = unixToDate(time);
-  return format(date, 'H:mm');
-}
-const findWeatherIcon = (icon) => {
-  console.log(icon)
-  switch(icon) {
-    case "01d":
-      return images[0];
-    case "01n":
-      return images[1];
-    case "02d":
-      return images[2];
-    case "02n":
-      return images[3];
-    case "03d":
-    case "03n":
-      return images[4];
-    case "04d":
-    case "04n":
-      return images[5];
-    case "09d":
-      case "09n":
-      return images[6];
-    case "10d":
-      return images[7];
-    case "10n":
-      return images[8];
-    case "11d":
-    case "11n":
-      return images[9];
-    case "13d":
-    case "13n":
-      return images[10];
-    case "50d":
-    case "50n":
-      return images[11];
-
-  }
-}
-
-
-
-export {displayWeather};
+export default displayWeather;

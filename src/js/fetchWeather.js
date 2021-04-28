@@ -1,8 +1,8 @@
-import { displayWeather } from "./displayWeather";
+import displayWeather from "./displayWeather";
 
 const getWeatherData = async (getCoord) => {
   try {
-    const coords = await getCoord;
+    const coords = getCoord;
     const fetchData = await fetch(requestWeatherAPI(coords, "imperial"), {
       mode: "cors",
     }).then((response) => response.json());
@@ -58,5 +58,22 @@ const fetchUserInputLocation = (() => {
 const requestWeatherAPI = (coords, units) => {
   return `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&units=${units}&appid=70d3ce744008d557a872cee31d8820ce`;
 };
+const requestLocationDetails = (location) => {
+  return `http://api.weatherapi.com/v1/forecast.json?key=4e4430f419224926bda142239212804&q=${location}`
+}
 
-export { getWeatherData, fetchUserInputLocation };
+const fetchCityInfo = async() => {
+  const searchInput = document.querySelector(".input_text");
+  if(searchInput.value !== '') {
+    const getCityName = await fetch(requestLocationDetails(searchInput.value), { mode: "cors"}).then(response => response.json());
+    const getRegion =  getCityName.location.region;
+    const getCountry =  getCityName.location.country;
+    const getCity =  getCityName.location.name;
+    if (getCountry === 'United States of America') {
+      return {getCity, getRegion};
+    } else {
+      return {getCity, getCountry};
+    }
+  }
+}
+export { getWeatherData, fetchUserInputLocation, fetchCityInfo };
