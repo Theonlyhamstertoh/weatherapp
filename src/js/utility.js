@@ -9,8 +9,6 @@ import {
   getUnixTime,
 } from "date-fns";
 
-
-
 const switchTemperatureUnits = () => {};
 
 const switchTimeTo24Hours = () => {};
@@ -31,7 +29,7 @@ function getCityTime(offset) {
 
 function getTimeDifference(cityTime) {
   const localTime = new Date();
-  const formatCityTime = fromUnixTime(cityTime)
+  const formatCityTime = fromUnixTime(cityTime);
   const timeDifference = differenceInHours(localTime, formatCityTime);
   if (Math.sign(timeDifference) === -1) {
     return Math.abs(timeDifference) + " hours ahead";
@@ -42,33 +40,21 @@ function getTimeDifference(cityTime) {
   }
 }
 
-async function getCityLocationInfo(lat, lon, timezone) {
-  // if(timezone.split('/')[0] == 'America') {
-  
-  // };
-  // const userInput = document.querySelector(".input_text").value;
-  
-  // const locationInfo = await fetch(requestCityInUS(lat, lon), {
-  //   mode: "cors",
-  // }).then(response => response.json());
-  // console.log(locationInfo.address.city)
-}
-
 const saveLocalStorage = () => {};
 
 function formatTemp(temperature) {
-  return Math.round(temperature) + "°";
+  return Math.round(temperature);
 }
 
 function convertClockTime(time, clockType) {
   const date = fromUnixTime(time);
-  if(clockType === '12L') {
-    return format(date, 'p')
-  } else if(clockType === '12') {
+  if (clockType === "12L") {
+    return format(date, "p");
+  } else if (clockType === "12") {
     return format(date, "haaa");
-  } else if(clockType === '24'){
+  } else if (clockType === "24") {
     return format(date, "H:mm");
-  } 
+  }
 }
 
 function formatToDay(time) {
@@ -88,20 +74,26 @@ function formatToMiles(meters) {
   return meters * 0.00062137;
 }
 
-function getFutureTime(currentLocationTime, forecastTIme) {
-  const timeDifference = differenceInMilliseconds(getUnixTime(new Date()), forecastTIme);
-  const forecastTime = currentLocationTime + Math.abs(timeDifference);
-  const formatTime = convertClockTime(forecastTime, '12');
+function getFutureTime(currentLocationTime, futureTime) {
+  const timeDifference = differenceInMilliseconds(
+    getUnixTime(new Date()),
+    futureTime
+  );
+  const forecastTime = currentLocationTime + (-timeDifference);
+  const formatTime = convertClockTime(forecastTime, "12");
   return formatTime;
 }
 
+function liveUpdateTime() {
+
+}
 function formatPressure() {}
 export {
-  getCityLocationInfo,
   getTimeDifference,
   getCityTime,
   formatToDay,
   convertClockTime,
   formatTemp,
   getFutureTime,
+  liveUpdateTime,
 };

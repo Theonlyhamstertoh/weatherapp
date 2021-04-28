@@ -1,19 +1,18 @@
-import {
-  getWeatherData,
-  fetchCityInfo
-} from "./fetchWeather";
+import { getWeatherData } from "./fetchWeather";
 
 import {
-  getCityLocationInfo,
   getTimeDifference,
   getCityTime,
   formatToDay,
   convertClockTime,
   formatTemp,
   getFutureTime,
+  liveUpdateTime,
 } from "./utility";
 
+import fetchCityInfo from "./fetchCityName";
 import { findWeatherIcon, findExtraInfoIcons } from "./getImages";
+import { fromUnixTime } from "date-fns";
 
 const weatherItems = {
   current: [],
@@ -36,28 +35,15 @@ function clearPrevious() {
   });
 }
 
-
-
 const displayWeather = async (coords) => {
-
-  console.log(await fetchCityInfo());
   const weatherData = await getWeatherData(coords);
-  console.log(weatherData)
-  const locationInfo = await getCityLocationInfo(
-    coords.lat,
-    coords.lon,
-    weatherData.timezone
-  );
+  const cityInfo = await fetchCityInfo(coords.lat, coords.lon);
   const Unixtime = getCityTime(weatherData.timezone_offset);
   clearPrevious();
 
   displayWeekData(weatherData.daily);
-  displayCurrentData(
-    weatherData.current,
-    Unixtime,
-    locationInfo,
-    weatherData.hourly[0].pop
-  );
+  displayCurrentData(weatherData.current, Unixtime, cityInfo, weatherData.hourly[0].pop);
+  displayExtraCurrentData(weatherData.current, weatherData.hourly[0].pop);
   displayHourlyData(weatherData.hourly, weatherData.timezone_offset);
 };
 
@@ -89,27 +75,57 @@ function displayWeekData(dailyData) {
   });
 }
 
-function displayCurrentData(todayData, Unixtime, location, rainChance) {
-  const formattime = convertClockTime(Unixtime, "12L");
+function displayCurrentData(todayData, Unixtime, location) {
+  const formatTime = convertClockTime(Unixtime, "12L");
   const timeDifference = getTimeDifference(Unixtime);
-  // const state = location.state;
-  // const city = location.cityName;
+  const city = location[0];
+  const state = location[1];
+
   const icon = findWeatherIcon(todayData.weather[0].icon);
   const description = todayData.weather[0].description; // need to capitalize
+  const temp = formatTemp(todayData.temp);
+
+  const todaySection = document.querySelector('.today_section');
+  const weatherContainer = document.createElement('div');
+  weatherContainer.classList.add('WI_area');
+
+  const currentHTML = `
+    <div class='WI_time-wrapper'>
+      <h4 class='WI_time skinnyFS'>${formatTime}</h4>
+      <i class='WI_hourDifference'>${timeDifference}</i>
+    </div>
+    <div class='WI_description skinnyFS'>${description}</div>
+    <div class='WI_location cityLocationFS'>${city}, ${state}</div>
+    <div class='WI_tempWrapper'>
+      <h1 class='WI_temp tempFS'>${temp}</h1>
+      <h4 class='WI_temp-switcher titleFS'>°</h4>
+      <div class='WI_icon'><img class='medCloud' src='${icon}'></div>
+    </div>
+  ` 
+  const createFRAG = document.createRange().createContextualFragment(currentHTML);
+  weatherContainer.appendChild(createFRAG);
+  weatherItems.current.push(weatherContainer);
+  todaySection.appendChild(weatherContainer);
+  
+}
+
+function displayExtraCurrentData(todayData, rainChance) {
   const wind_speed = todayData.wind_speed; //ned to convert
   const uv_index = todayData.uvi;
   const feels_like = todayData.feels_like; //need to convert
   const dew_point = todayData.dew_point;
   const humidity = todayData.humidity;
   const visibility = todayData.visibility; // need to convert
-  const temp = formatTemp(todayData.temp);
   const pressure = todayData.pressure;
-  const extraWeatherContainer = document.querySelector(".WI_e-area");
-  const extraWeatherGrid = document.createElement("div");
-  extraWeatherGrid.classList.add("WI_e-grid");
-  weatherItems.current.push(extraWeatherGrid);
+  
+  
+  const todaySection = document.querySelector(".today_section");
+  const extraWeatherContainer = document.createElement("div");
+  extraWeatherContainer.classList.add("WI_e-area");
+  weatherItems.current.push(extraWeatherContainer);
 
   const extraWeatherDataHTML = `
+  <div class='WI_e-grid'>
     <div class='WI_e-item'>
       <img class='extraInfoIcons' src='${findExtraInfoIcons("wind")}'>
       <div class='WI_e-info'>
@@ -165,17 +181,14 @@ function displayCurrentData(todayData, Unixtime, location, rainChance) {
         <p class='textFS'>humidity</p>
         <h4 id='windInfo'class='textFS--bold'>${humidity}</h4>
       </div>
-    </div>`;
+    </div>
+  </div>`;
   const createFRAG = document
     .createRange()
     .createContextualFragment(extraWeatherDataHTML);
-  extraWeatherGrid.appendChild(createFRAG);
-  extraWeatherContainer.appendChild(extraWeatherGrid);
-
-  // const timeDifference
-  // const biggerIcon
+  extraWeatherContainer.appendChild(createFRAG);
+  todaySection.appendChild(extraWeatherContainer);
 }
-
 // include sunset and sunrise!!
 function displayHourlyData(hourlyData, offset) {
   const currentLocationTime = getCityTime(offset);
@@ -189,7 +202,7 @@ function displayHourlyData(hourlyData, offset) {
     createHourDOM.classList.add("hour_item");
 
     const hourHTML = `
-      <div class='hour_time titleFS'>${time}</div>
+      <div class='hour_time titleFS'>${time}°</div>
       <div class='hour_icon'><img class='iconSize' src='${icon}'></div>
       <div class='hour_temp titleFS'>${temp}</div>
     `;

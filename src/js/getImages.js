@@ -1,4 +1,3 @@
-
 function importAll(r) {
   return r.keys().map(r);
 }
@@ -7,7 +6,9 @@ const weatherIcon = importAll(
   require.context("../img/weather", false, /\.(png|jpe?g|svg)$/)
 );
 
-const extraInfoIcons = importAll(require.context("../img/icons", false, /\.(png|jpe?g|svg)$/));
+const extraInfoIcons = importAll(
+  require.context("../img/icons", false, /\.(png|jpe?g|svg)$/)
+);
 
 const findExtraInfoIcons = (type) => {
   switch (type) {
@@ -30,7 +31,7 @@ const findExtraInfoIcons = (type) => {
     default:
       return extraInfoIcons[0];
   }
-}
+};
 const findWeatherIcon = (icon) => {
   switch (icon) {
     case "01d":
@@ -68,4 +69,4 @@ const findWeatherIcon = (icon) => {
   }
 };
 
-export {findWeatherIcon, findExtraInfoIcons};
+export { findWeatherIcon, findExtraInfoIcons };
