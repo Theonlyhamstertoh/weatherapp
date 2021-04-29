@@ -1,0 +1,60 @@
+
+$clouds: #ecf0f1;
+$turquoise: #1abc9c;
+$greensea: #16a085;
+$night: #34495e;
+$midnight: #2c3e50;
+$transition: all .5s ease;
+
+.setting {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  position: fixed;
+  width: 300px;
+  height: 400px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #040a33;
+  border-radius: 10px;
+}
+
+.setting_top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.saveButton {
+  background-color: $night;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 10px;
+}
+.setting_body {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+}
+hr {
+  border: none;
+  border-top: 3px solid rgba(255, 255, 255, 0.212);
+  color: #333;
+  overflow: visible;
+  text-align: center;
+  height: 5px;
+}
+.setting_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+input[type='checkbox'] {
+  width: 50px;
+  height: 50px;
+}

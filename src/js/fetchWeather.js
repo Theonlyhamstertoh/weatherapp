@@ -1,6 +1,6 @@
-import displayWeather from "./displayWeather";
+import {displayWeather} from "./displayWeather";
 
-const getWeatherData = async (getCoord) => {
+const getWeatherData = async (getCoord, units) => {
   try {
     const coords = getCoord;
     const fetchData = await fetch(requestWeatherAPI(coords, "imperial"), {

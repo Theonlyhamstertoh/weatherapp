@@ -27,7 +27,8 @@ body {
   font-family: "Nirmala";
   box-sizing: border-box;
   width: 100vw;
-  // height: 100vh;
+  display: flex;
+  flex-direction: column;
   background-color: var.$darkBlue;
 
 }
@@ -35,7 +36,6 @@ body {
 .data_wrapper {
   display: flex;
   flex-direction: row;
-  height: 100vh;
 }
 
 
@@ -139,3 +139,4 @@ i {
 .hourForecastList::-webkit-scrollbar {
   height: 9px;
 }
+

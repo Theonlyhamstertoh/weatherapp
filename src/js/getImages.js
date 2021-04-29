@@ -12,19 +12,19 @@ const extraInfoIcons = importAll(
 
 const findExtraInfoIcons = (type) => {
   switch (type) {
-    case "rain":
+    case "airQuality":
       return extraInfoIcons[0];
-    case "dew":
+    case "rain":
       return extraInfoIcons[1];
-    case "feels_like":
+    case "dew":
       return extraInfoIcons[2];
-    case "humidity":
+    case "feels_like":
       return extraInfoIcons[3];
-    case "pressure":
+    case "humidity":
       return extraInfoIcons[4];
-    case "uvi":
+    case "pressure":
       return extraInfoIcons[5];
-    case "visibility":
+    case "uvi":
       return extraInfoIcons[6];
     case "wind":
       return extraInfoIcons[7];
