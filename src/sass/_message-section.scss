@@ -5,7 +5,7 @@
 
 .message_section {
   background-color: var.$darkBlue;
-  flex-grow: 1;
+  min-width: 450px;
 }
 
 .searchbar {
@@ -42,6 +42,7 @@
 
 
 .btnWrapper {
+  max-width: 500px;
   display: flex;
   gap: 15px;
   font-family: "Nirmala";

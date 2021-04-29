@@ -49,7 +49,7 @@ function formatTemp(temperature) {
 function convertClockTime(time, clockType) {
   const date = fromUnixTime(time);
   if (clockType === "12L") {
-    return format(date, "p");
+    return format(date, "pp");
   } else if (clockType === "12") {
     return format(date, "haaa");
   } else if (clockType === "24") {
@@ -84,9 +84,14 @@ function getFutureTime(currentLocationTime, futureTime) {
   return formatTime;
 }
 
-function liveUpdateTime() {
-
-}
+const liveUpdateTime = (timeSnapshot) => {
+  const time = document.querySelector('.WI_time');
+  let unix = timeSnapshot;
+  const clock = window.setInterval(() => {
+    time.textContent = convertClockTime(unix++, "12L");
+  }, 1000)
+  return clock;
+};
 function formatPressure() {}
 export {
   getTimeDifference,
@@ -96,4 +101,5 @@ export {
   formatTemp,
   getFutureTime,
   liveUpdateTime,
+  capitalize,
 };

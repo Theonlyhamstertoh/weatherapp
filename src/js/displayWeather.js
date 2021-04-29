@@ -8,11 +8,12 @@ import {
   formatTemp,
   getFutureTime,
   liveUpdateTime,
+  capitalize,
 } from "./utility";
 
 import fetchCityInfo from "./fetchCityName";
 import { findWeatherIcon, findExtraInfoIcons } from "./getImages";
-import { fromUnixTime } from "date-fns";
+import { format, fromUnixTime } from "date-fns";
 
 const weatherItems = {
   current: [],
@@ -33,6 +34,8 @@ function clearPrevious() {
   weatherItems.hourly.forEach((item) => {
     item.remove();
   });
+
+  clearInterval(weatherItems.intervalID);
 }
 
 const displayWeather = async (coords) => {
@@ -41,9 +44,9 @@ const displayWeather = async (coords) => {
   const Unixtime = getCityTime(weatherData.timezone_offset);
   clearPrevious();
 
-  displayWeekData(weatherData.daily);
   displayCurrentData(weatherData.current, Unixtime, cityInfo, weatherData.hourly[0].pop);
   displayExtraCurrentData(weatherData.current, weatherData.hourly[0].pop);
+  displayWeekData(weatherData.daily);
   displayHourlyData(weatherData.hourly, weatherData.timezone_offset);
 };
 
@@ -61,7 +64,7 @@ function displayWeekData(dailyData) {
       <h4 class='date_title dateFS'>${time}</h4>
       <div class='date_icon-temp'>
         <img class='date_icon iconSize' src='${icon}' >
-        <h4 class='date_temp dateFS'>${temp}</h4>
+        <h4 class='date_temp dateFS'>${temp}°</h4>
       </div>
      `;
 
@@ -77,6 +80,7 @@ function displayWeekData(dailyData) {
 
 function displayCurrentData(todayData, Unixtime, location) {
   const formatTime = convertClockTime(Unixtime, "12L");
+
   const timeDifference = getTimeDifference(Unixtime);
   const city = location[0];
   const state = location[1];
@@ -106,7 +110,9 @@ function displayCurrentData(todayData, Unixtime, location) {
   weatherContainer.appendChild(createFRAG);
   weatherItems.current.push(weatherContainer);
   todaySection.appendChild(weatherContainer);
-  
+
+  // set up live clock and store the interval ID to allow for deletion later
+  weatherItems.intervalID = liveUpdateTime(Unixtime);
 }
 
 function displayExtraCurrentData(todayData, rainChance) {
@@ -202,9 +208,9 @@ function displayHourlyData(hourlyData, offset) {
     createHourDOM.classList.add("hour_item");
 
     const hourHTML = `
-      <div class='hour_time titleFS'>${time}°</div>
+      <div class='hour_time titleFS'>${time}</div>
       <div class='hour_icon'><img class='iconSize' src='${icon}'></div>
-      <div class='hour_temp titleFS'>${temp}</div>
+      <div class='hour_temp titleFS'>${temp}°</div>
     `;
     const createHourFRAG = document
       .createRange()

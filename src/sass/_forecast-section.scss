@@ -2,10 +2,10 @@
 @use "mixin";
 
 .forecast_section {
-  flex-grow: 4;
+  flex-grow: 1;
   background-color: var.$darkBlue;     
   padding: 0 30px; 
-  overflow: scroll;
+  overflow-x: scroll;
   min-width: 250px;
 }
 
@@ -70,4 +70,9 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+}
+
+
+.hour_time {
+  width: 50px;
 }

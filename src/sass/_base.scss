@@ -35,10 +35,8 @@ body {
 .data_wrapper {
   display: flex;
   flex-direction: row;
+  height: 100vh;
 }
-
-
-
 
 
 
@@ -67,7 +65,7 @@ color: var.$lowMed_opacity;
   font-weight: bold;
 }
 .citylocationFS { //h3
-  font-size: 35px;
+  font-size: 30px;
   font-weight: bold;
   line-height: 37px;
   color: var.$medHigh_opacity;
@@ -103,7 +101,7 @@ color: var.$lowMed_opacity;
 
 
 i {
-  font-size: 10px;
+  font-size: 13px;
   color: var.$medHigh_opacity;
 }
 // the size stays the same. 
