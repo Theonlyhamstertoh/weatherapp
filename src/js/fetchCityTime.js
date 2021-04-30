@@ -1,6 +1,8 @@
 import {
   differenceInHours,
   differenceInMilliseconds,
+  differenceInMinutes,
+  differenceInSeconds,
   format,
   fromUnixTime,
   getUnixTime,
@@ -19,7 +21,10 @@ function getCityTime(offset) {
 function getTimeDifference(cityTime) {
   const localTime = new Date();
   const formatCityTime = fromUnixTime(cityTime);
-  const timeDifference = differenceInHours(localTime, formatCityTime);
+
+  // get difference in minutes and convert to hours
+  const timeDifference = (differenceInMinutes(localTime, formatCityTime) / 60).toFixed(0);
+
   if (Math.sign(timeDifference) === -1) {
     return Math.abs(timeDifference) + " hours ahead";
   } else if (Math.sign(timeDifference) === 1) {

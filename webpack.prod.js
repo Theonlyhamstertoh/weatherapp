@@ -9,6 +9,7 @@ module.exports = merge(commonConfig, {
         filename: "[name].bundle.[hash].js",
         path: path.resolve(__dirname, 'dist'),
         assetModuleFilename: "images/[hash][ext][query]",
+        clean: true,
     },
     plugins: [new MiniCssExtractPlugin({ filename: "[name].[contenthash].css"}) ],
     module: {
