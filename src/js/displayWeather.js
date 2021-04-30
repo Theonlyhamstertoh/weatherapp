@@ -1,15 +1,22 @@
-import { getWeatherData } from "./fetchWeather";
+import { fetchUserInputLocation, getWeatherData } from "./fetchWeather";
 import { getCityTime } from "./fetchCityTime";
 import fetchCityInfo from "./fetchCityName";
 import { saveToLocal } from "./localStorage";
 import displayWeekData from "./displayWeek";
 import displayHourlyData from "./displayHourly";
+import displayCards from "./displayCards";
 import { displayCurrentData, displayExtraCurrentData } from "./displayCurrent";
 
 const weatherItems = {
   current: [],
   daily: [],
   hourly: [],
+  cards: [],
+  id: {
+    cards: [],
+    settings: [],
+    searchQuery: {},
+  },
 };
 
 function clearPrevious() {
@@ -29,30 +36,25 @@ function clearPrevious() {
   clearInterval(weatherItems.intervalID);
 }
 
-const displayWeather = async (coords, units) => {
-  const weatherData = await getWeatherData(coords);
-  const cityInfo = await fetchCityInfo(coords.lat, coords.lon, units);
-  const Unixtime = getCityTime(weatherData.timezone_offset);
+const displayWeather = async (coords, units, cardsOnly) => {
+  const get = await getNecessaryWeatherData(coords);
+
+  if (cardsOnly === true) {
+    return displayCards(get);
+  }
   clearPrevious();
-
-  displayCurrentData(
-    weatherData.current,
-    Unixtime,
-    cityInfo,
-    weatherData.hourly[0].pop,
-    units
-  );
-
-  displayExtraCurrentData(
-    weatherData.current,
-    weatherData.hourly[0].pop,
-    cityInfo[2],
-    units
-  );
-  
-  displayWeekData(weatherData.daily);
-  displayHourlyData(weatherData.hourly, weatherData.timezone_offset);
-  saveToLocal(weatherData);
+  displayCurrentData(get, units);
+  displayExtraCurrentData(get, units);
+  displayWeekData(get.weatherData.daily);
+  displayHourlyData(get);
+  saveToLocal(coords);
 };
+
+async function getNecessaryWeatherData(coords) {
+  const weatherData = await getWeatherData(coords, units);
+  const cityInfo = await fetchCityInfo(coords.lat, coords.lon);
+  const Unixtime = getCityTime(weatherData.timezone_offset);
+  return { weatherData, cityInfo, Unixtime };
+}
 
 export { displayWeather, weatherItems };

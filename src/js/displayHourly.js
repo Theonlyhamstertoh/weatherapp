@@ -3,8 +3,11 @@ import { findWeatherIcon } from "./getImages";
 import { getCityTime, getFutureTime } from "./fetchCityTime";
 import { weatherItems } from "./displayWeather";
 
-export default function displayHourlyData(hourlyData, offset) {
+export default function displayHourlyData(get) {
+  const hourlyData = get.weatherData.hourly;
+  const offset = get.weatherData.timezone_offset
   const currentLocationTime = getCityTime(offset);
+
   const hourlyContainer = document.querySelector(".hourForecastList");
   hourlyData.forEach((eachHour) => {
     const time = getFutureTime(currentLocationTime, eachHour.dt);

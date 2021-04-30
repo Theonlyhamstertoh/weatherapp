@@ -58,6 +58,15 @@ color: var.$lowMed_opacity;
   box-shadow: 0 3 15px 3px;
   color: var.$high_opacity;
 }
+
+.cardFS {
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 37px;
+  color: var.$medHigh_opacity;
+
+}
+
 .messageFS { //h2
   font-size: 5.3rem;
   word-spacing: 100vw;

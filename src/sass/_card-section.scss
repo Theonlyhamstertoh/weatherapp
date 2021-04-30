@@ -1,0 +1,64 @@
+@use "var";
+@use "mixin";
+@use "message-section";
+.card_section {
+  background-color: #0e1544;
+  padding: 20px;
+}
+
+.gridContainer {
+  display: grid;
+  flex-direction: column;
+  grid-auto-rows: auto;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(250px, 1fr));
+  justify-items: center;
+  gap: 10px;
+  row-gap: 20px;
+  align-items: center;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 12px;
+  background-color: #0c636044;
+  padding: 0 20px;
+  width: 220px;
+  padding-top: 20px;
+}
+
+.card_info {
+  position: relative;
+
+}
+
+.addButton {
+  width: 150px;
+  transition: 0.5s width;
+  &:hover {
+    width: 170px;
+    cursor: pointer;
+  }
+}
+.card_unit {
+  position: absolute;
+  top: 0;
+  left: 170;
+  font-size: 2.5em;
+}
+
+.addCard {
+  @extend .card;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  padding: 12px;
+
+
+}
+
+.card_input {
+  @extend .input_text;
+  border-radius: 10px;
+}

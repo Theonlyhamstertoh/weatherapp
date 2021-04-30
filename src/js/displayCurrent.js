@@ -3,12 +3,16 @@ import { weatherItems } from "./displayWeather";
 import { formatTemp, capitalize, formatUnits, formatDistance } from "./utility";
 import {getTimeDifference, convertClockTime, liveUpdateTime} from "./fetchCityTime";
 
-function displayCurrentData(todayData, Unixtime, location, units) {
-  const formatTime = convertClockTime(Unixtime, "24");
+function displayCurrentData(get, units) {
+  const todayData = get.weatherData.current;
+  const Unixtime = get.Unixtime;
+  const cityInfo = get.cityInfo;
+  
 
+  const formatTime = convertClockTime(Unixtime, "24");
   const timeDifference = getTimeDifference(Unixtime);
-  const city = location[0];
-  const state = location[1];
+  const city = cityInfo[0];
+  const state = cityInfo[1];
 
   const icon = findWeatherIcon(todayData.weather[0].icon);
   const description = capitalize(todayData.weather[0].description);
@@ -42,7 +46,13 @@ function displayCurrentData(todayData, Unixtime, location, units) {
   weatherItems.intervalID = liveUpdateTime(Unixtime);
 }
 
-function displayExtraCurrentData(todayData, rainChance, airQuality, units) {
+
+function displayExtraCurrentData(get, units) {
+  const todayData = get.weatherData.current;
+  const rainChance = get.weatherData.hourly[0].pop;
+  const airQuality = get.cityInfo[2];
+
+
   const wind_speed = formatDistance(todayData.wind_speed, units);
   const uv_index = todayData.uvi;
   const feels_like = todayData.feels_like; //need to convert

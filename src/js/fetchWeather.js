@@ -1,5 +1,4 @@
 import {displayWeather} from "./displayWeather";
-
 const getWeatherData = async (getCoord, units) => {
   try {
     const coords = getCoord;
@@ -33,15 +32,15 @@ const getWeatherData = async (getCoord, units) => {
 })();
 
 const fetchUserInputLocation = (() => {
-  const coords = async () => {
+  const coords = async (searchInput) => {
     const response = await fetch(
-      requestCoords(defineSearchType(), { mode: "cors" })
+      requestCoords(defineSearchType(searchInput), { mode: "cors" })
     ).then((result) => result.json());
+    
     displayWeather(response.coord);
   };
 
-  const defineSearchType = () => {
-    const searchInput = document.querySelector(".input_text");
+  const defineSearchType = (searchInput) => {
     const regex = new RegExp("^[0-9]+$");
     if (regex.test(searchInput.value)) {
       return `zip=${searchInput.value}`;
