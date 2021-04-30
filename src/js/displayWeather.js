@@ -36,9 +36,9 @@ function clearPrevious() {
   clearInterval(weatherItems.intervalID);
 }
 
-const displayWeather = async (coords, units, cardsOnly) => {
+const displayWeather = async (coords, cardsOnly, units) => {
   const get = await getNecessaryWeatherData(coords);
-
+  console.log(get.cityInfo)
   if (cardsOnly === true) {
     return displayCards(get);
   }
@@ -51,7 +51,7 @@ const displayWeather = async (coords, units, cardsOnly) => {
 };
 
 async function getNecessaryWeatherData(coords) {
-  const weatherData = await getWeatherData(coords, units);
+  const weatherData = await getWeatherData(coords);
   const cityInfo = await fetchCityInfo(coords.lat, coords.lon);
   const Unixtime = getCityTime(weatherData.timezone_offset);
   return { weatherData, cityInfo, Unixtime };

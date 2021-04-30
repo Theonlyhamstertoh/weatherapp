@@ -32,12 +32,12 @@ const getWeatherData = async (getCoord, units) => {
 })();
 
 const fetchUserInputLocation = (() => {
-  const coords = async (searchInput) => {
+  const coords = async (searchInput, cardsOnly) => {
     const response = await fetch(
       requestCoords(defineSearchType(searchInput), { mode: "cors" })
     ).then((result) => result.json());
     
-    displayWeather(response.coord);
+    displayWeather(response.coord, cardsOnly);
   };
 
   const defineSearchType = (searchInput) => {

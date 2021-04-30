@@ -8,8 +8,11 @@ const requestCity = (lat, lon) => {
 
 const fetchCityInfo = async(lat, lon) => {
   const searchInput = document.querySelector(".input_text");
+  const card_input = document.querySelector('.card_input')
   if(searchInput.value !== '') {
     return await fetchCityWithInput(searchInput.value);
+  } else if (card_input.value !== '') {
+    return await fetchCityWithInput(card_input.value);
   } else {
     return await fetchCityWithoutInput(lat, lon) 
   }
