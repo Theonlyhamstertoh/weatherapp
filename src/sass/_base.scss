@@ -87,11 +87,20 @@ color: var.$lowMed_opacity;
   font-weight: bold;
   font-size: 20px;
 }
+
+.dateFS--big {
+  font-size: 35px;
+  color: var.$medHigh_opacity;
+  // line-height: 30px;
+  font-weight: bold;
+}
 .dateFS { //h4
   color: var.$medHigh_opacity;
   font-weight: bold;
   font-size: 20px;
 }
+
+
 
 .textFS--bold{
   font-size: 17px;
@@ -105,9 +114,14 @@ color: var.$lowMed_opacity;
   font-weight: regular;
 }
 
+.boldFS {
+  font-size: 17px;
+  color: var.$high_opacity;
+  font-weight: bold;
+}
 .textFS { //p
   font-size: 13px;
-  color: var.$opacity_50
+  color: var.$medHigh_opacity
 }
 
 
@@ -127,6 +141,13 @@ i {
 
 .iconSize {
   width: 30px;
+}
+
+.superSmallSize {
+  width: 10px;
+}
+.medSize {
+  width: 40px;
 }
 
 // scrollbar

@@ -1,3 +1,5 @@
+import { data } from "./objectArray"
+
 const requestLocationDetails = (location) => {
   return `http://api.weatherapi.com/v1/forecast.json?key=4e4430f419224926bda142239212804&q=${location}&aqi=yes`
 }
@@ -9,12 +11,14 @@ const requestCity = (lat, lon) => {
 const fetchCityInfo = async(lat, lon) => {
   const searchInput = document.querySelector(".input_text");
   const card_input = document.querySelector('.card_input')
-  if(searchInput.value !== '') {
+
+  if(searchInput.value !== '' ) {
     return await fetchCityWithInput(searchInput.value);
-  } else if (card_input.value !== '') {
+  } else if (card_input.value !== '' && data.cardsOnly === true) {
     return await fetchCityWithInput(card_input.value);
   } else {
-    return await fetchCityWithoutInput(lat, lon) 
+    const cityNameFromCoords = await fetchONLYCity(lat, lon);
+    return await fetchCityWithInput(cityNameFromCoords) 
   }
 }
 
@@ -38,18 +42,17 @@ async function fetchAirQuality(lat, lon) {
   return getCityInfo.current.air_quality["us-epa-index"];
 }
 
-async function fetchCityWithoutInput(lat, lon) {
-  const airQuality = await fetchAirQuality(lat, lon);
+async function fetchONLYCity(lat, lon) {
   const cityInfo = await fetch(requestCity(lat, lon), {
     mode: "cors",
   }).then((response) => response.json());
-
+  
   const address = cityInfo.address;
-  if(address.country_code === 'us') {
-    return [address.city, address.state, airQuality];
-  } else {
-    return [address.city, address.state, airQuality];
+  if(address.city === undefined) {
+    return address.state
   }
+  if(address.city === 'Shinjuku') return "Tokyo"
+  return address.city;
 } 
 
 export default fetchCityInfo;

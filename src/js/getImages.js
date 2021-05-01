@@ -28,6 +28,8 @@ const findExtraInfoIcons = (type) => {
       return extraInfoIcons[6];
     case "wind":
       return extraInfoIcons[7];
+    case "delete":
+      return extraInfoIcons[9];
     default:
       return extraInfoIcons[0];
   }

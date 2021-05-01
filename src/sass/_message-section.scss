@@ -3,10 +3,10 @@
 
 
 
-.message_section {
-  background-color: var.$darkBlue;
-  min-width: 420px;
-}
+// .message_section {
+//   background-color: var.$darkBlue;
+//   min-width: 420px;
+// }
 
 .searchbar {
   display: flex;
@@ -43,37 +43,37 @@
 }
 
 
-.btnWrapper {
-  max-width: 500px;
-  display: flex;
-  gap: 15px;
-  font-family: "Nirmala";
-  margin-top: 50px;
-  margin-left: 30px;
-}
-.btn {
-  letter-spacing: 0.4px;
-  font-size: 14px;
-  padding: 10px;
-  background-color: var.$low_opacity;
-  @include mixin.resetO-B;
-  border-radius: 30px;
-  font-weight: bold;
-  color: var.$medHigh_opacity;
-}
+// .btnWrapper {
+//   max-width: 500px;
+//   display: flex;
+//   gap: 15px;
+//   font-family: "Nirmala";
+//   margin-top: 50px;
+//   margin-left: 30px;
+// }
+// .btn {
+//   letter-spacing: 0.4px;
+//   font-size: 14px;
+//   padding: 10px;
+//   background-color: var.$low_opacity;
+//   @include mixin.resetO-B;
+//   border-radius: 30px;
+//   font-weight: bold;
+//   color: var.$medHigh_opacity;
+// }
 
-.message_board {
-  margin-left: 30px;
-}
+// .message_board {
+//   margin-left: 30px;
+// }
 
-.message_weatherType {
-  color: var.$message_weatherType !important;
-  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.363);
-}
+// .message_weatherType {
+//   color: var.$message_weatherType !important;
+//   text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.363);
+// }
 
-.message_caption {
-  margin-left: 35px;
-  margin-top: 20px;
-  color: var.$lowMed_opacity !important;
-}
+// .message_caption {
+//   margin-left: 35px;
+//   margin-top: 20px;
+//   color: var.$lowMed_opacity !important;
+// }
 

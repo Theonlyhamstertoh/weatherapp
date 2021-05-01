@@ -1,5 +1,5 @@
-import displayCards from "./displayCards";
-import {displayWeather} from "./displayWeather";
+import { displayCards } from "./displayCards";
+import { displayWeather } from "./displayWeather";
 import { getCityTime } from "./fetchCityTime";
 import fetchCityInfo from "./fetchCityName";
 import { data } from "./objectArray";
@@ -8,15 +8,18 @@ async function getNecessaryWeatherData(coords) {
   const weatherData = await getWeatherData(coords);
   const cityInfo = await fetchCityInfo(coords.lat, coords.lon);
   const Unixtime = getCityTime(weatherData.timezone_offset);
-  return { weatherData, cityInfo, Unixtime};
+  return { weatherData, cityInfo, Unixtime };
 }
 
 const getWeatherData = async (getCoord) => {
   try {
     const coords = getCoord;
-    const fetchData = await fetch(requestWeatherAPI(coords, data.settings.units), {
-      mode: "cors",
-    }).then((response) => response.json());
+    const fetchData = await fetch(
+      requestWeatherAPI(coords, data.settings.units),
+      {
+        mode: "cors",
+      }
+    ).then((response) => response.json());
     return fetchData;
   } catch (err) {
     throw new Error(err);
@@ -48,15 +51,18 @@ const fetchUserInputLocation = (() => {
     const response = await fetch(
       requestCoords(defineSearchType(searchInput), { mode: "cors" })
     ).then((result) => result.json());
-    
-    if(cardsOnly === true) {
-      displayCards(response.coord);
+
+    if (data.cardsOnly === true) {
+      displayCards(response.coord); 
     } else {
       displayWeather(response.coord);
     }
   };
 
   const defineSearchType = (searchInput) => {
+    if(typeof(searchInput ) === typeof('string')) {
+      return `q=${searchInput}`;
+    }
     const regex = new RegExp("^[0-9]+$");
     if (regex.test(searchInput.value)) {
       return `zip=${searchInput.value}`;
@@ -74,4 +80,4 @@ const requestWeatherAPI = (coords, units) => {
   return `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&units=${units}&appid=70d3ce744008d557a872cee31d8820ce`;
 };
 
-export {fetchUserInputLocation, getNecessaryWeatherData};
+export { fetchUserInputLocation, getNecessaryWeatherData };

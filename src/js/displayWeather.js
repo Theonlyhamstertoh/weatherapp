@@ -4,7 +4,7 @@ import displayWeekData from "./displayWeek";
 import displayHourlyData from "./displayHourly";
 import { displayCurrentData, displayExtraCurrentData } from "./displayCurrent";
 import {weatherItems, data} from "./objectArray";
-import displayMessage from "./displayMessage";
+
 
 
 
@@ -17,12 +17,13 @@ const displayWeather = async (coords, units) => {
   clearPrevious();
 
   // display the data
-  displayMessage(get.weatherData.current)
   displayCurrentData(get);
   displayExtraCurrentData(get);
   displayWeekData(get.weatherData.daily);
   displayHourlyData(get);
   saveToLocal(data);
+  console.log(coords)
+
 };
 
 
