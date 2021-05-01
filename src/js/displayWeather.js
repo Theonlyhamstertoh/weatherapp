@@ -1,23 +1,31 @@
-import { fetchUserInputLocation, getWeatherData } from "./fetchWeather";
-import { getCityTime } from "./fetchCityTime";
-import fetchCityInfo from "./fetchCityName";
+import { getNecessaryWeatherData} from "./fetchWeather";
 import { saveToLocal } from "./localStorage";
 import displayWeekData from "./displayWeek";
 import displayHourlyData from "./displayHourly";
-import displayCards from "./displayCards";
 import { displayCurrentData, displayExtraCurrentData } from "./displayCurrent";
+import {weatherItems, data} from "./objectArray";
+import displayMessage from "./displayMessage";
 
-const weatherItems = {
-  current: [],
-  daily: [],
-  hourly: [],
-  cards: [],
-  id: {
-    cards: [],
-    settings: [],
-    searchQuery: {},
-  },
+
+
+
+
+const displayWeather = async (coords, units) => {
+  data.searched_Coords = coords;
+  const get = await getNecessaryWeatherData(coords);
+  // clear previous before loading the new weather data
+  clearPrevious();
+
+  // display the data
+  displayMessage(get.weatherData.current)
+  displayCurrentData(get);
+  displayExtraCurrentData(get);
+  displayWeekData(get.weatherData.daily);
+  displayHourlyData(get);
+  saveToLocal(data);
 };
+
+
 
 function clearPrevious() {
   // clear out previous data
@@ -36,25 +44,4 @@ function clearPrevious() {
   clearInterval(weatherItems.intervalID);
 }
 
-const displayWeather = async (coords, cardsOnly, units) => {
-  const get = await getNecessaryWeatherData(coords);
-  console.log(get.cityInfo)
-  if (cardsOnly === true) {
-    return displayCards(get);
-  }
-  clearPrevious();
-  displayCurrentData(get, units);
-  displayExtraCurrentData(get, units);
-  displayWeekData(get.weatherData.daily);
-  displayHourlyData(get);
-  saveToLocal(coords);
-};
-
-async function getNecessaryWeatherData(coords) {
-  const weatherData = await getWeatherData(coords);
-  const cityInfo = await fetchCityInfo(coords.lat, coords.lon);
-  const Unixtime = getCityTime(weatherData.timezone_offset);
-  return { weatherData, cityInfo, Unixtime };
-}
-
-export { displayWeather, weatherItems };
+export { displayWeather, getNecessaryWeatherData};

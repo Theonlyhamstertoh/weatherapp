@@ -32,4 +32,5 @@ function capitalize(text) {
     .join(" ");
 }
 
+
 export { formatTemp, capitalize, formatUnits, formatDistance };

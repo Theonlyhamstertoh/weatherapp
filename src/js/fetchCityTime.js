@@ -7,6 +7,7 @@ import {
   fromUnixTime,
   getUnixTime,
 } from "date-fns";
+import { data } from "./objectArray";
 
 function getCityTime(offset) {
   const d = new Date();
@@ -36,15 +37,21 @@ function getTimeDifference(cityTime) {
 
 function convertClockTime(time, clockType) {
   const date = fromUnixTime(time);
-  if (clockType === "12L") {
+  if (clockType === "12") {
     return format(date, "pp");
-  } else if (clockType === "12") {
-    return format(date, "haaa");
   } else if (clockType === "24") {
     return format(date, "H:mm:ss");
   }
 }
 
+function formatHourlyTime(time, clockType) {
+  const date = fromUnixTime(time);
+  if (clockType === "12") {
+    return format(date, "haaa");
+  } else if (clockType === "24") {
+    return format(date, "H:mm");
+  }
+}
 function formatToDay(time) {
   const date = fromUnixTime(time);
   return format(date, "EEEE");
@@ -56,7 +63,7 @@ function getFutureTime(currentLocationTime, futureTime) {
     futureTime
   );
   const forecastTime = currentLocationTime + -timeDifference;
-  const formatTime = convertClockTime(forecastTime, "12");
+  const formatTime = formatHourlyTime(forecastTime, data.settings.clockSystem);
   return formatTime;
 }
 
@@ -64,7 +71,7 @@ const liveUpdateTime = (timeSnapshot) => {
   const time = document.querySelector(".WI_time");
   let unix = timeSnapshot;
   const clock = window.setInterval(() => {
-    time.textContent = convertClockTime(unix++, "24");
+    time.textContent = convertClockTime(unix++, data.settings.clockSystem, true);
   }, 1000);
   return clock;
 };

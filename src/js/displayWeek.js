@@ -1,7 +1,7 @@
 import { findWeatherIcon } from "./getImages";
 import { formatTemp } from "./utility";
 import { formatToDay } from "./fetchCityTime";
-import {weatherItems} from "./displayWeather";
+import {weatherItems} from "./objectArray";
 export default function displayWeekData(dailyData) {
   const dailyContainer = document.querySelector(".week_forecast-container");
   dailyData.forEach((eachDay) => {

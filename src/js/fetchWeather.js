@@ -1,8 +1,20 @@
+import displayCards from "./displayCards";
 import {displayWeather} from "./displayWeather";
-const getWeatherData = async (getCoord, units) => {
+import { getCityTime } from "./fetchCityTime";
+import fetchCityInfo from "./fetchCityName";
+import { data } from "./objectArray";
+
+async function getNecessaryWeatherData(coords) {
+  const weatherData = await getWeatherData(coords);
+  const cityInfo = await fetchCityInfo(coords.lat, coords.lon);
+  const Unixtime = getCityTime(weatherData.timezone_offset);
+  return { weatherData, cityInfo, Unixtime};
+}
+
+const getWeatherData = async (getCoord) => {
   try {
     const coords = getCoord;
-    const fetchData = await fetch(requestWeatherAPI(coords, "imperial"), {
+    const fetchData = await fetch(requestWeatherAPI(coords, data.settings.units), {
       mode: "cors",
     }).then((response) => response.json());
     return fetchData;
@@ -37,7 +49,11 @@ const fetchUserInputLocation = (() => {
       requestCoords(defineSearchType(searchInput), { mode: "cors" })
     ).then((result) => result.json());
     
-    displayWeather(response.coord, cardsOnly);
+    if(cardsOnly === true) {
+      displayCards(response.coord);
+    } else {
+      displayWeather(response.coord);
+    }
   };
 
   const defineSearchType = (searchInput) => {
@@ -58,4 +74,4 @@ const requestWeatherAPI = (coords, units) => {
   return `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&units=${units}&appid=70d3ce744008d557a872cee31d8820ce`;
 };
 
-export { getWeatherData, fetchUserInputLocation };
+export {fetchUserInputLocation, getNecessaryWeatherData};

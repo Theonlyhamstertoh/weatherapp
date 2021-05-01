@@ -1,7 +1,11 @@
 import { formatTemp } from "./utility";
-import { weatherItems } from "./displayWeather";
+import {weatherItems, data} from "./objectArray";
+import { saveToLocal } from "./localStorage";
+import {getNecessaryWeatherData} from "./fetchWeather";
 
-const displayCards = (get) => {
+const displayCards = async (coords) => {
+  const get = await getNecessaryWeatherData(coords);
+
   const todayData = get.weatherData.current;
   const city = get.cityInfo[0];
   const state = get.cityInfo[1];
@@ -25,8 +29,14 @@ const displayCards = (get) => {
   createNewCard.appendChild(createCardFRAG);
   gridContainer.appendChild(createNewCard)
   weatherItems.cards.push(createNewCard);
+  data.cardCoords.push(coords)
+  saveToLocal(data);
+
 } 
 
+const deleteCards = () => {
+
+}
 function randomId() {
   return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
 }

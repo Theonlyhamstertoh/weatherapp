@@ -1,8 +1,7 @@
 import { formatTemp } from "./utility";
 import { findWeatherIcon } from "./getImages";
 import { getCityTime, getFutureTime } from "./fetchCityTime";
-import { weatherItems } from "./displayWeather";
-
+import {weatherItems} from "./objectArray";
 export default function displayHourlyData(get) {
   const hourlyData = get.weatherData.hourly;
   const offset = get.weatherData.timezone_offset

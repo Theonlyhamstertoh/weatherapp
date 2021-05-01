@@ -68,11 +68,14 @@ color: var.$lowMed_opacity;
 }
 
 .messageFS { //h2
-  font-size: 5.3rem;
-  word-spacing: 100vw;
+  font-size: 4.5rem;
+  // word-spacing: 100vw;
+  margin-right: 30px;
   color: var.$full_opacity;
   font-weight: bold;
 }
+
+
 .citylocationFS { //h3
   font-size: 30px;
   font-weight: bold;

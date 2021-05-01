@@ -1,15 +1,16 @@
 import { findWeatherIcon, findExtraInfoIcons } from "./getImages";
-import { weatherItems } from "./displayWeather";
+import {data, weatherItems} from "./objectArray";
 import { formatTemp, capitalize, formatUnits, formatDistance } from "./utility";
 import {getTimeDifference, convertClockTime, liveUpdateTime} from "./fetchCityTime";
 
-function displayCurrentData(get, units) {
+
+function displayCurrentData(get) {
   const todayData = get.weatherData.current;
   const Unixtime = get.Unixtime;
   const cityInfo = get.cityInfo;
   
 
-  const formatTime = convertClockTime(Unixtime, "24");
+  const formatTime = convertClockTime(Unixtime, data.settings.clockSystem);
   const timeDifference = getTimeDifference(Unixtime);
   const city = cityInfo[0];
   const state = cityInfo[1];
@@ -17,7 +18,7 @@ function displayCurrentData(get, units) {
   const icon = findWeatherIcon(todayData.weather[0].icon);
   const description = capitalize(todayData.weather[0].description);
   const temp = formatTemp(todayData.temp);
-  const tempUnit = formatUnits(units);
+  const tempUnit = formatUnits(data.settings.units);
   const todaySection = document.querySelector(".today_section");
   const weatherContainer = document.createElement("div");
   weatherContainer.classList.add("WI_area");
@@ -47,13 +48,14 @@ function displayCurrentData(get, units) {
 }
 
 
-function displayExtraCurrentData(get, units) {
+function displayExtraCurrentData(get) {
   const todayData = get.weatherData.current;
   const rainChance = get.weatherData.hourly[0].pop;
   const airQuality = get.cityInfo[2];
 
 
-  const wind_speed = formatDistance(todayData.wind_speed, units);
+  const wind_speed = formatDistance(todayData.wind_speed, data.settings.units);
+
   const uv_index = todayData.uvi;
   const feels_like = todayData.feels_like; //need to convert
   const dew_point = todayData.dew_point;

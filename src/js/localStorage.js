@@ -1,9 +1,9 @@
-const saveToLocal = (coords) => {
-  localStorage.setItem('mainWeather', JSON.stringify(coords));
+const saveToLocal = (weatherObjectArray) => {
+  localStorage.setItem('weatherInfo', JSON.stringify(weatherObjectArray));
 }
 
 const fetchLocal = () => {
-  const weatherData = JSON.parse(localStorage.getItem('mainWeather'));
+  const weatherData = JSON.parse(localStorage.getItem('weatherInfo'));
   return weatherData;
 }
 

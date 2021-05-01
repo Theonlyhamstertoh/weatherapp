@@ -69,4 +69,5 @@ const findWeatherIcon = (icon) => {
   }
 };
 
+
 export { findWeatherIcon, findExtraInfoIcons };
