@@ -35,7 +35,7 @@ const buttonHandler = async (e) => {
   }
 
 
-  displayWeather(data.mainSearch);
+  displayWeather(data.mainSearch.coords);
 };
 
 

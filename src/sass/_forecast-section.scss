@@ -10,10 +10,10 @@
 }
 
 .week_block {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .week_title {
-  margin: 5px;
+  margin: 10px 5px;
 }
 .week_forecast-container {
   display: flex;
@@ -29,7 +29,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-width: 0;
+  min-width: 0px;
+  min-height: 30px;
 }
 
 .date_title_wrapper {
@@ -45,10 +46,12 @@
   justify-content: space-between;
 }
 
-
+.date_temp {
+  width: 29px;
+  text-align: end;
+}
 
 .hourly_block {
-  margin-top: 20px;
 
 }
 .hour_title {
@@ -74,7 +77,7 @@
   overflow-x: scroll;
   flex-direction: row;
   gap: 30px;
-  padding: 0 0 20px 0;
+  padding: 0 0 10px 0;
 }
 .hour_item {
   display: flex;

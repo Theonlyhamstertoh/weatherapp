@@ -6,12 +6,20 @@ import { fetchLocal } from "./localStorage";
 import { data } from "./objectArray";
 import {buttonHandler} from "./settings"
 
+
+
 const allCheckBox = document.querySelectorAll('input[type="checkbox"]');
 
 allCheckBox.forEach((el) => {
   el.addEventListener("click", buttonHandler);
 });
 
+const temp = document.querySelector('.setting_temp');
+const clock = document.querySelector(".setting_clock");
+if(data.settings.units === 'metric') {
+  temp.checked = true;
+  clock.checked = true;
+}
 
 displayWeather(data.mainSearch.coords, data.mainSearch.city)
 
@@ -58,3 +66,5 @@ saveSetting.addEventListener('click', () => {
   settingPage.classList.remove("displayBlock")
   settingPage.classList.add('displayNone')
 })
+
+

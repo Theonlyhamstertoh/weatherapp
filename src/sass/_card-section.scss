@@ -3,14 +3,19 @@
 @use "message-section";
 .card_section {
   background-color: #0e1544;
-  min-width: 280px;
-  display: flex;
-  padding: 10px;
-  flex-grow: 1;
-  flex-direction: column;
+  // padding: 0px;
+  min-width: 300px;
+  overflow: scroll;
 }
 
-
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  overflow: scroll;
+  height:40.8rem;
+}
 .card {
   display: flex;
   justify-content: space-between;
@@ -18,11 +23,11 @@
   border-radius: 12px;
   padding: 0 20px;
   margin: 10px;
-  width: 200px;
-  height: 80px;
+  min-width: 240px;
+  min-height:80px;
   position: relative;
+  
   transition: 1s all;
-  box-shadow: 1px 1px 1px black;
   &:hover {
     .delete {
       visibility: visible;
@@ -36,6 +41,9 @@
   }
 }
 
+.card_title_section {
+  padding: 10px;
+}
 .delete {
   position: absolute;
   visibility: hidden;
@@ -49,47 +57,6 @@
 }
 
 
-.rainColor {
-  color: lightskyblue
-}
-.color1 {
-  background: linear-gradient(to bottom, #ff9966, #fa4e51);
-}
-
-.color2 {
-  background: linear-gradient(to top, #642b73, #c6426e);
-}
-
-.color3 {
-  background: linear-gradient(315deg, #ff4e00 0%, #ec9f05 74%);
-}
-
-.color4 {
-  background: linear-gradient(315deg, #e899dc 0%, #d387ab 74%);
-}
-
-.color5 {
-  background: linear-gradient(279deg, #dfa87e 0%, #d38648 74%);
-}
-
-.color6 {
-  background: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
-}
-.color7 {
-  background: linear-gradient(315deg, #7f53ac 0%, #647dee 74%);
-}
-
-.color8 {
-  background: linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);
-}
-
-.color9 {
-  background: linear-gradient(315deg, #f8ceec 0%, #a88beb 74%);
-}
-
-.color10 {
-  background: linear-gradient(315deg, #90d5ec 0%, #fc575e 74%);
-}
 
 .addCard {
   @extend .card;

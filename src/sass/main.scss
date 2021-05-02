@@ -4,10 +4,10 @@
 @use "forecast-section";
 @use "var" ;
 @use "mixin";
+@use "card-section";
 @use "mediaquery";
 @use "modal";
 @use "animatedButton";
-@use "card-section";
 
 .displayNone {
   display: none;
@@ -16,3 +16,5 @@
 .displayBlock {
   display: block;
 }
+
+

@@ -2,8 +2,9 @@
 @use "mixin";
 
 .today_section {
-  background-color: var.$slightDarkBlue;
+  background-color: #0e1544;
   flex-grow: 1;
+  padding-top: 13px;
   min-width: min-content;
 }
 
@@ -15,7 +16,8 @@
 }
 
 
-
+.WI_temp {
+}
 .WI_Area {
   margin: 0 20px;
   display: flex;
@@ -44,15 +46,16 @@
 }
 
 .WI_tempWrapper {
-  display: flex;
-  gap: 50px;
+
+  display: grid;
+  grid-template-columns: auto auto auto;
   align-items: center;
   position: relative;
   .WI_tempUnit {
-    position: absolute;
-    left: 180px;
-    top: 5px;
-    font-size: 40px;
+    font-size: 30px;
+    align-self: start;
+    margin-top: 15px;
+    margin-right: 10px;
   }
   
 }
@@ -74,7 +77,7 @@
   grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-columns: 50% 50%;
   gap: 20px;
-
+  row-gap: 25px;
 }
 
 .WI_e-item  {

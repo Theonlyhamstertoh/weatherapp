@@ -25,7 +25,7 @@ const displayCards = async (coords, onlyLocalData, alreadyHaveID, localStoredCit
       <h1 class='card_temp dateFS--big'>${temp}°</h1>
   </div>
   `
-  const cardSection = document.querySelector('.card_section');
+  const cardContainer = document.querySelector('.cardContainer');
   const createNewCard = document.createElement('div');
   const createCardFRAG = document.createRange().createContextualFragment(cardHTML);
   createNewCard.classList.add('card');
@@ -34,7 +34,7 @@ const displayCards = async (coords, onlyLocalData, alreadyHaveID, localStoredCit
 
   //appends child to the the DOM 
   createNewCard.appendChild(createCardFRAG);
-  cardSection.insertBefore(createNewCard, addButton)
+  cardContainer.insertBefore(createNewCard, addButton)
   weatherItems.cards.push(createNewCard);
   
   
