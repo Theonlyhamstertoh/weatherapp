@@ -1,15 +1,17 @@
 import { findWeatherIcon, findExtraInfoIcons } from "./getImages";
-import {data, weatherItems} from "./objectArray";
+import { data, weatherItems } from "./index";
 import { formatTemp, capitalize, formatUnits, formatDistance } from "./utility";
-import {getTimeDifference, convertClockTime, liveUpdateTime} from "./fetchCityTime";
-
+import {
+  getTimeDifference,
+  convertClockTime,
+  liveUpdateTime,
+} from "./fetchCityTime";
 
 function displayCurrentData(get) {
   const todayData = get.weatherData.current;
   const Unixtime = get.Unixtime;
   const cityInfo = get.cityInfo;
-  console.log(get.weatherData)
-
+  console.log(get.weatherData);
 
   const formatTime = convertClockTime(Unixtime, data.settings.clockSystem);
   const timeDifference = getTimeDifference(Unixtime);
@@ -37,6 +39,8 @@ function displayCurrentData(get) {
       <div class='WI_icon'><img class='medCloud' src='${icon}'></div>
     </div>
   `;
+
+  //append element onto the DOM
   const createFRAG = document
     .createRange()
     .createContextualFragment(currentHTML);
@@ -48,12 +52,10 @@ function displayCurrentData(get) {
   weatherItems.intervalID = liveUpdateTime(Unixtime);
 }
 
-
 function displayExtraCurrentData(get) {
   const todayData = get.weatherData.current;
   const rainChance = get.weatherData.hourly[0].pop;
   const airQuality = get.cityInfo[2];
-
 
   const wind_speed = formatDistance(todayData.wind_speed, data.settings.units);
 
@@ -127,6 +129,7 @@ function displayExtraCurrentData(get) {
       </div>
     </div>
   </div>`;
+  //append element onto the DOM
   const createFRAG = document
     .createRange()
     .createContextualFragment(extraWeatherDataHTML);

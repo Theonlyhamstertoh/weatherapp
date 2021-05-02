@@ -1,10 +1,9 @@
-
 $clouds: #ecf0f1;
 $turquoise: #1abc9c;
 $greensea: #16a085;
 $night: #34495e;
 $midnight: #2c3e50;
-$transition: all .5s ease;
+$transition: all 0.5s ease;
 
 .setting {
   display: flex;
@@ -18,7 +17,7 @@ $transition: all .5s ease;
   transform: translate(-50%, -50%);
   background-color: #040a33;
   border-radius: 10px;
-  box-shadow: inset 1px 0px 10px 5px  rgba(238, 238, 238, 0.137);
+  box-shadow: inset 1px 0px 10px 5px rgba(238, 238, 238, 0.137);
 }
 
 .setting_top {
@@ -55,13 +54,10 @@ hr {
   align-items: center;
 }
 
-
-input[type='checkbox'] {
+input[type="checkbox"] {
   width: 50px;
   height: 50px;
 }
-
-
 
 .switch {
   position: relative;
@@ -70,7 +66,7 @@ input[type='checkbox'] {
   height: 34px;
 }
 
-.switch input { 
+.switch input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -84,8 +80,8 @@ input[type='checkbox'] {
   right: 0;
   bottom: 0;
   background-color: rgb(28, 88, 85);
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -96,8 +92,8 @@ input[type='checkbox'] {
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {

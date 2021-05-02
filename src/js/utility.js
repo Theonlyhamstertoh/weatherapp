@@ -1,9 +1,3 @@
-const switchTimeTo24Hours = () => {};
-
-const showDefault = () => {};
-
-const throwErrorIfNotFound = () => {};
-
 function formatTemp(temperature) {
   return Math.round(temperature);
 }
@@ -17,14 +11,15 @@ function formatUnits(units) {
 }
 
 function FtoC(F) {
-  const c =  (F - 32 ) * 5/9;
-  return formatTemp(c)
+  const c = ((F - 32) * 5) / 9;
+  return formatTemp(c);
 }
 
 function CtoF(C) {
-  const f= (C * 9/5) + 32;
-  return formatTemp(f)
+  const f = (C * 9) / 5 + 32;
+  return formatTemp(f);
 }
+
 function formatDistance(data, units) {
   if (units === "imperial") {
     return data + "mph";
@@ -40,7 +35,5 @@ function capitalize(text) {
     .map((str) => str.charAt(0).toUpperCase() + str.substring(1))
     .join(" ");
 }
-
-
 
 export { formatTemp, capitalize, formatUnits, formatDistance, CtoF, FtoC };

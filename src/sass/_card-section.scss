@@ -1,9 +1,8 @@
 @use "var";
 @use "mixin";
-@use "message-section";
+@use "searchbar";
 .card_section {
   background-color: #0e1544;
-  // padding: 0px;
   min-width: 300px;
   overflow: scroll;
 }
@@ -14,8 +13,9 @@
   justify-items: center;
   align-items: center;
   overflow: scroll;
-  height:40.8rem;
+  height: 40.8rem;
 }
+
 .card {
   display: flex;
   justify-content: space-between;
@@ -24,9 +24,9 @@
   padding: 0 20px;
   margin: 10px;
   min-width: 240px;
-  min-height:80px;
+  min-height: 80px;
   position: relative;
-  
+
   transition: 1s all;
   &:hover {
     .delete {
@@ -44,6 +44,7 @@
 .card_title_section {
   padding: 10px;
 }
+
 .delete {
   position: absolute;
   visibility: hidden;
@@ -56,14 +57,15 @@
   text-align: center;
 }
 
-
-
 .addCard {
   @extend .card;
-  background: linear-gradient(90deg, rgb(19, 155, 160), rgba(39, 146, 179, 0.972)
+  background: linear-gradient(
+    90deg,
+    rgb(19, 155, 160),
+    rgba(39, 146, 179, 0.972)
   );
- display: flex;
- justify-content: flex-start;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .searchbar--card {
@@ -86,8 +88,7 @@
   }
 }
 
-
-.addbutton  {
+.addbutton {
   cursor: pointer;
   transition: 0.3s all;
   width: 17px;
@@ -101,4 +102,3 @@
     transform: rotate(90deg);
   }
 }
-

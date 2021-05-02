@@ -1,5 +1,5 @@
 @use "base";
-@use "message-section";
+@use "searchbar";
 @use "today-section";
 @use "forecast-section";
 @use "var" ;
@@ -7,7 +7,8 @@
 @use "card-section";
 @use "mediaquery";
 @use "modal";
-@use "animatedButton";
+@use "loadingIcon";
+
 
 .displayNone {
   display: none;
@@ -16,5 +17,4 @@
 .displayBlock {
   display: block;
 }
-
 

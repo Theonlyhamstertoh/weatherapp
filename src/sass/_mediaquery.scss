@@ -1,5 +1,4 @@
 // if width is greater than 2000px, change gap to like 200px or less if small.
-
 @media (min-width: 320px) and (max-width: 1408px) {
   .today_section {
     min-width: 350px;
@@ -24,14 +23,11 @@
   .medCloud {
     width: 90px;
   }
-
-  
 }
 @media (max-width: 1008px) {
   .data_wrapper {
     display: flex;
     flex-direction: column;
-    
   }
   .date_icon-temp {
     gap: 10px;
@@ -56,12 +52,9 @@
     margin-left: 10px;
   }
 
- 
-  
   .week_forecast-container {
     gap: 15px;
   }
-
 
   .WI_Area {
     margin: 0;
@@ -78,13 +71,13 @@
   }
 }
 
-@media (min-width: 500px ) and (max-width: 1008px) {
+@media (min-width: 500px) and (max-width: 1008px) {
   .cardContainer {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-template-rows: repeat(auto-fill, minmax(80px, 1fr));
   }
-} 
+}
 
 @media (max-width: 340px) {
   .today_section {

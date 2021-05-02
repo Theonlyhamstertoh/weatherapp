@@ -3,12 +3,12 @@
 
 .forecast_section {
   flex-grow: 1;
-  background-color: var.$darkBlue;     
-  padding: 0 30px; 
+  background-color: var.$darkBlue;
+  padding: 0 30px;
   overflow-x: scroll;
   min-width: 250px;
 }
-
+// week section
 .week_block {
   margin-top: 10px;
 }
@@ -20,7 +20,6 @@
   gap: 10px;
   justify-content: center;
   flex-direction: column;
-
 }
 .date {
   background-color: var.$reallylow_opacity;
@@ -51,15 +50,15 @@
   text-align: end;
 }
 
-.hourly_block {
 
-}
+// hourly section
+
 .hour_title {
   margin: 10px 0;
-
 }
 .hour_time {
   text-align: center;
+  width: 50px;
 }
 
 .hourly_forecast-container {
@@ -69,7 +68,6 @@
   margin-bottom: 10px;
   border-radius: 20px;
   background-color: var.$reallylow_opacity;
-  
 }
 
 .hourForecastList {
@@ -85,9 +83,4 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-}
-
-
-.hour_time {
-  width: 50px;
 }

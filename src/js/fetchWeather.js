@@ -2,11 +2,14 @@ import { displayCards } from "./displayCards";
 import { displayWeather } from "./displayWeather";
 import { getCityTime } from "./fetchCityTime";
 import fetchCityInfo from "./fetchCityName";
-import { data } from "./objectArray";
+import { data } from "./index";
 
+// returns the data needed for the functions. 
 async function getNecessaryWeatherData(coords, localStoredCity) {
   const weatherData = await getWeatherData(coords);
   let cityInfo;
+
+  // if retrieving from local storage, send the city name to be fetched instead of coords for greater accucracy in the CITY LOCATION NAMING
   if(localStoredCity !== undefined) {
     cityInfo = await fetchCityInfo(undefined, undefined, localStoredCity);
   } else {
@@ -16,6 +19,7 @@ async function getNecessaryWeatherData(coords, localStoredCity) {
   return { weatherData, cityInfo, Unixtime };
 }
 
+// retrieve the weather data
 const getWeatherData = async (getCoord) => {
   try {
     const coords = getCoord;
@@ -35,6 +39,7 @@ const getWeatherData = async (getCoord) => {
   }
 };
 
+// fetch user geolocation if user allows and use that data to be placed
 (async () => {
   if ("geolocation" in navigator) {
     const coords = await new Promise((resolve, reject) => {
@@ -55,7 +60,9 @@ const getWeatherData = async (getCoord) => {
   }
 })();
 
+
 const fetchUserInputLocation = (() => {
+  // convert the search input into coordinate values
   const coords = async (searchInput, cardsOnly) => {
     const response = await fetch(
       requestCoords(defineSearchType(searchInput), { mode: "cors" })
@@ -68,6 +75,7 @@ const fetchUserInputLocation = (() => {
     }
   };
 
+  // define the search type so that the values are correctly put into place
   const defineSearchType = (searchInput) => {
     if(typeof(searchInput ) === typeof('string')) {
       return `q=${searchInput}`;

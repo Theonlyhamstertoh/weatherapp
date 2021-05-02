@@ -26,13 +26,15 @@
   animation: animateOut 2s forwards;
 }
 
-
 @keyframes animateOut {
-  from {opacity: 1;}
-  to {opacity: 0;}
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
-.WI_temp {
-}
+
 .WI_Area {
   margin: 0 20px;
   display: flex;
@@ -52,16 +54,11 @@
   padding-bottom: 4px;
 }
 
-
-.WI_description {
-
-}
 .WI_location {
   width: calc(100% + 20px);
 }
 
 .WI_tempWrapper {
-
   display: grid;
   grid-template-columns: auto auto auto;
   align-items: center;
@@ -72,9 +69,7 @@
     margin-top: 15px;
     margin-right: 10px;
   }
-  
 }
-
 
 // extra
 .WI_e-area {
@@ -95,14 +90,13 @@
   row-gap: 25px;
 }
 
-.WI_e-item  {
+.WI_e-item {
   display: flex;
   gap: 20px;
   align-items: center;
   .WI_e-info {
     display: flex;
     flex-direction: column;
-
   }
 }
 .extraInfoIcons {

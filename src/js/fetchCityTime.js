@@ -1,13 +1,11 @@
 import {
-  differenceInHours,
   differenceInMilliseconds,
   differenceInMinutes,
-  differenceInSeconds,
   format,
   fromUnixTime,
   getUnixTime,
 } from "date-fns";
-import { data } from "./objectArray";
+import { data } from "./index";
 
 function getCityTime(offset) {
   const d = new Date();
@@ -57,6 +55,7 @@ function formatToDay(time) {
   return format(date, "EEEE");
 }
 
+// This is to get the data for the hourly forecasts and converted into the local time. 
 function getFutureTime(currentLocationTime, futureTime) {
   const timeDifference = differenceInMilliseconds(
     getUnixTime(new Date()),
@@ -67,6 +66,7 @@ function getFutureTime(currentLocationTime, futureTime) {
   return formatTime;
 }
 
+//show the running clock
 const liveUpdateTime = (timeSnapshot) => {
   const time = document.querySelector(".WI_time");
   let unix = timeSnapshot;

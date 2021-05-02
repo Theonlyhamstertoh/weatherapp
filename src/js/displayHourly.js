@@ -1,10 +1,11 @@
 import { formatTemp } from "./utility";
 import { findWeatherIcon } from "./getImages";
 import { getCityTime, getFutureTime } from "./fetchCityTime";
-import {weatherItems} from "./objectArray";
+import { weatherItems } from "./index";
+
 export default function displayHourlyData(get) {
   const hourlyData = get.weatherData.hourly;
-  const offset = get.weatherData.timezone_offset
+  const offset = get.weatherData.timezone_offset;
   const currentLocationTime = getCityTime(offset);
 
   const hourlyContainer = document.querySelector(".hourForecastList");
@@ -21,6 +22,8 @@ export default function displayHourlyData(get) {
       <div class='hour_icon'><img class='iconSize' src='${icon}'></div>
       <div class='hour_temp titleFS'>${temp}°</div>
     `;
+
+    //append element onto the DOM
     const createHourFRAG = document
       .createRange()
       .createContextualFragment(hourHTML);

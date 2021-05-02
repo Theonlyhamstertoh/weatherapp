@@ -1,7 +1,8 @@
 import { findWeatherIcon } from "./getImages";
 import { formatTemp } from "./utility";
 import { formatToDay } from "./fetchCityTime";
-import {weatherItems} from "./objectArray";
+import { weatherItems } from "./index";
+
 export default function displayWeekData(dailyData) {
   const dailyContainer = document.querySelector(".week_forecast-container");
   dailyData.forEach((eachDay) => {
@@ -19,7 +20,7 @@ export default function displayWeekData(dailyData) {
         <h4 class='date_temp dateFS'>${temp}°</h4>
       </div>
      `;
-
+    //append element onto the DOM
     const creatDayFRAG = document
       .createRange()
       .createContextualFragment(dayHTML);

@@ -1,9 +1,9 @@
-import {displayCards, updateCards} from "./displayCards";
+import {updateCards} from "./displayCards";
 import { displayWeather } from "./displayWeather";
-import { data, weatherItems } from "./objectArray";
+import { data, weatherItems } from "./index";
 
 
-
+// detect if user wants to see data in another temperature type or clock type and refetch/update the data to the correct unit type. 
 const buttonHandler = async (e) => {
   const temp = document.querySelector('.setting_temp');
   const clock = document.querySelector(".setting_clock");
@@ -11,6 +11,7 @@ const buttonHandler = async (e) => {
     switch(e.target) {
       case temp: 
         data.settings.units = "metric";
+        // for each card, convert the temperature
         weatherItems.cards.forEach(el => {
           updateCards(el);
         })
@@ -22,7 +23,6 @@ const buttonHandler = async (e) => {
   } else {
     switch(e.target) {
       case temp: 
-        console.log(temp)
         data.settings.units = "imperial";
         weatherItems.cards.forEach(el => {
           updateCards(el);

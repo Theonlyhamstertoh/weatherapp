@@ -1,15 +1,19 @@
+// function that imports all image files from the specific folder.
 function importAll(r) {
   return r.keys().map(r);
 }
 
+// import all images from the "weather" folder
 const weatherIcon = importAll(
   require.context("../img/weather", false, /\.(png|jpe?g|svg)$/)
 );
 
+// import all images from the "icons" folder
 const extraInfoIcons = importAll(
   require.context("../img/icons", false, /\.(png|jpe?g|svg)$/)
 );
 
+// return the correct icons based on the image type
 const findExtraInfoIcons = (type) => {
   switch (type) {
     case "airQuality":
@@ -34,6 +38,8 @@ const findExtraInfoIcons = (type) => {
       return extraInfoIcons[0];
   }
 };
+
+// return the correct icons based on the image type
 const findWeatherIcon = (icon) => {
   switch (icon) {
     case "01d":
@@ -70,6 +76,5 @@ const findWeatherIcon = (icon) => {
       return weatherIcon[0];
   }
 };
-
 
 export { findWeatherIcon, findExtraInfoIcons };
