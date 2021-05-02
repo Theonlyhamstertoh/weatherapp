@@ -31,6 +31,13 @@
   align-items: center;
   min-width: 0;
 }
+
+.date_title_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .date_icon-temp {
   display: flex;
   gap: 50px;

@@ -10,20 +10,18 @@ import {weatherItems, data} from "./objectArray";
 
 
 
-const displayWeather = async (coords, units) => {
-  data.searched_Coords = coords;
+const displayWeather = async (coords) => {
   const get = await getNecessaryWeatherData(coords);
   // clear previous before loading the new weather data
   clearPrevious();
-
   // display the data
   displayCurrentData(get);
   displayExtraCurrentData(get);
   displayWeekData(get.weatherData.daily);
   displayHourlyData(get);
+  
+  data.mainSearch = coords;
   saveToLocal(data);
-  console.log(coords)
-
 };
 
 
@@ -43,6 +41,11 @@ function clearPrevious() {
   });
 
   clearInterval(weatherItems.intervalID);
+  
+
+  // clear input
+  const searchInput = document.querySelector(".input_text");
+  searchInput.value = '';
 }
 
 export { displayWeather, getNecessaryWeatherData};

@@ -97,13 +97,13 @@ color: var.$lowMed_opacity;
 .dateFS { //h4
   color: var.$medHigh_opacity;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 
 
 .textFS--bold{
-  font-size: 17px;
+  font-size: 16px;
   color: var.$medHigh_opacity;
   font-weight: bold;
 }
@@ -143,12 +143,17 @@ i {
   width: 30px;
 }
 
+.smallSize {
+  width: 20px;
+}
 .superSmallSize {
   width: 10px;
 }
 .medSize {
   width: 40px;
 }
+
+
 
 // scrollbar
 ::-webkit-scrollbar {

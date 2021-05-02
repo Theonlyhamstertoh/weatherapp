@@ -3,8 +3,10 @@
 @use "message-section";
 .card_section {
   background-color: #0e1544;
-  min-width: 350px;
+  min-width: 280px;
   display: flex;
+  padding: 10px;
+  flex-grow: 1;
   flex-direction: column;
 }
 
@@ -16,10 +18,11 @@
   border-radius: 12px;
   padding: 0 20px;
   margin: 10px;
-  width: 280px;
+  width: 200px;
   height: 80px;
   position: relative;
   transition: 1s all;
+  box-shadow: 1px 1px 1px black;
   &:hover {
     .delete {
       visibility: visible;
@@ -45,14 +48,7 @@
   text-align: center;
 }
 
-.addbutton  {
-  cursor: pointer;
-  transition: 0.3s all;
 
-  &:hover {
-    transform: scale(1.1);
-  }
-}
 .rainColor {
   color: lightskyblue
 }
@@ -95,9 +91,47 @@
   background: linear-gradient(315deg, #90d5ec 0%, #fc575e 74%);
 }
 
+.addCard {
+  @extend .card;
+  background: linear-gradient(90deg, rgb(19, 155, 160), rgba(39, 146, 179, 0.972)
+  );
+ display: flex;
+ justify-content: flex-start;
+}
+
+.searchbar--card {
+  @extend .searchbar;
+  padding: 0;
+}
+
 .card_input {
-  @extend .input_text;
-  border-radius: 10px;
+  border: none;
+  outline: none;
+  border-radius: 0;
+  background-color: transparent;
+  // border-bottom: 2px solid rgba(255, 255, 255, 0.397);
+  width: 100%;
   margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+  transition: 0.5s all;
+  &:hover {
+  }
+}
+
+
+.addbutton  {
+  cursor: pointer;
+  transition: 0.3s all;
+  width: 17px;
+  margin-right: 10px;
+  border-radius: 10px;
+  background-color: #496c9b38;
+  padding: 10px;
+
+  &:hover {
+    transform: scale(1.1);
+    transform: rotate(90deg);
+  }
 }
 

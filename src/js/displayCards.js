@@ -1,17 +1,19 @@
-import { formatTemp } from "./utility";
+import { CtoF, formatTemp, FtoC } from "./utility";
 import {weatherItems, data} from "./objectArray";
 import { saveToLocal } from "./localStorage";
 import {getNecessaryWeatherData} from "./fetchWeather";
 import { getTimeDifference } from "./fetchCityTime";
 import { findExtraInfoIcons } from "./getImages";
 
-const displayCards = async (coords) => {
+const displayCards = async (coords, onlyLocalData, alreadyHaveID) => {
   const get = await getNecessaryWeatherData(coords);
   const todayData = get.weatherData.current;
   const city = get.cityInfo[0];
   const timeDifference = getTimeDifference(get.Unixtime);
-  const id = randomId();
+  const id = randomId(alreadyHaveID);
   const temp = formatTemp(todayData.temp);
+  const addButton = document.querySelector('.addCard');
+  const cardSearchInput = document.querySelector(".card_input");
   const cardHTML = `
     <img src='${findExtraInfoIcons("delete")}' class='delete superSmallSize'>
     <div class='card_location'>
@@ -31,15 +33,16 @@ const displayCards = async (coords) => {
 
   //appends child to the the DOM 
   createNewCard.appendChild(createCardFRAG);
-  cardSection.appendChild(createNewCard)
+  cardSection.insertBefore(createNewCard, addButton)
   weatherItems.cards.push(createNewCard);
   
-  data.cardCoords.push({id, coords})
-  saveToLocal(data);
-
   
   createNewCard.addEventListener('click', deleteCards)
-  
+  cardSearchInput.value = '';
+  data.cardsOnly = false;
+  if(onlyLocalData === true) return;
+  data.cards.push({id, coords})
+  saveToLocal(data);
 } 
 
 const getRandomColor = () => {
@@ -58,14 +61,27 @@ const deleteCards = (e) => {
     }
   }) 
 
-  data.cardCoords.forEach((el, index) => {if(el.id === targetID) {
-    data.cardCoords.splice(index, 1);
+  data.cards.forEach((el, index) => {if(el.id === targetID) {
+    data.cards.splice(index, 1);
   }})
+  saveToLocal(data);
 
-  console.log(weatherItems.cards, data)
 }
-function randomId() {
+
+const updateCards = async (el) => {
+  const temp = el.querySelector('.card_temp');
+  const takeOutDegree = parseInt(temp.textContent.slice(0, -1))
+
+  if(data.settings.units === 'metric') {
+    temp.textContent = FtoC(takeOutDegree) + "°";
+  } else if(data.settings.units ===  'imperial') {
+    temp.textContent = CtoF(takeOutDegree)  + "°";
+  }
+}
+
+function randomId(ifAlreadyID) {
+  if(ifAlreadyID !== undefined) return ifAlreadyID;
   return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
 }
 
-export {displayCards};
+export {displayCards, updateCards};

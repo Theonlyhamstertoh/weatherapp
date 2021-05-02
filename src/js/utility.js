@@ -16,6 +16,15 @@ function formatUnits(units) {
   }
 }
 
+function FtoC(F) {
+  const c =  (F - 32 ) * 5/9;
+  return formatTemp(c)
+}
+
+function CtoF(C) {
+  const f= (C * 9/5) + 32;
+  return formatTemp(f)
+}
 function formatDistance(data, units) {
   if (units === "imperial") {
     return data + "mph";
@@ -34,4 +43,4 @@ function capitalize(text) {
 
 
 
-export { formatTemp, capitalize, formatUnits, formatDistance };
+export { formatTemp, capitalize, formatUnits, formatDistance, CtoF, FtoC };

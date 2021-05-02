@@ -11,6 +11,7 @@
      </section> -->
     <section class='today_section'>
       <div class='searchbar'>
+        <input type='image' class='input_setting smallSize' src='./img/icons/zzsettings.svg'>
         <input type='text' value='' class='input_text textFS' placeholder="London">
         <input type='button' class='input_button textFS' value='Search'>
       </div>
@@ -41,9 +42,9 @@
     </section> 
     <section class='card_section'>
       <div class='addCard'>
-        <div class='searchbar'>
+        <div class='searchbar--card'>
+          <img class='addbutton' src='./img/icons/zzadd.png'>
           <input type='text' value='' class='card_input textFS' placeholder="Add a card to watch">
-          <img class='addbutton medSize' src='./img/icons/zaddButton.svg'>
         </div>
       </div>
     </section>
@@ -55,8 +56,8 @@
 
 
 
-<!-- 
-  <div class='setting'>
+
+  <div class='setting displayNone'>
     <div class='setting_top'>
       <h4 class='titleFS'>Setting</h4>
       <input type='button' class='saveButton textFS--bold' value='Save'>
@@ -64,28 +65,30 @@
     <hr>
     <div class='setting_body'>
       <div class='setting_item'>
-        <h4 class='titleFS'>Temperature Unit</h4>
+        <h4 class='titleFS'>Temp Unit (F° / C°)</h4>
         <div class='switcher'>
-          <input class="setting_temp" type="checkbox">
+          <label class="switch">
+            <input type="checkbox" class='setting_temp'>
+            <span class="slider round"></span>
+          </label>
         </div>
+
       </div>
 
        <div class='setting_item'>
-        <h4 class='titleFS'>Clock System</h4>
+        <h4 class='titleFS'>Clock Type (12 / 24)</h4>
         <div class='switcher'>
-          <input class='setting_clock' type="checkbox">
-
+          <label class="switch">
+            <input type="checkbox" class='setting_clock'>
+            <span class="slider round"></span>
+          </label>
         </div>
       </div>
 
-      <div class='setting_item'>
-        <h4 class='titleFS'>Authentic Mode</h4>
-        <div class='switcher'>
-          <input class='setting_mode' type="checkbox">
-        </div> 
+
       </div>
     </div>
-  </div> -->
+  </div>
 
 
 
