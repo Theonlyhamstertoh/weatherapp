@@ -1,3 +1,4 @@
+import { getISODay } from "date-fns"
 import { data } from "./objectArray"
 
 const requestLocationDetails = (location) => {
@@ -7,8 +8,7 @@ const requestCity = (lat, lon) => {
   return ` https://eu1.locationiq.com/v1/reverse.php?key=pk.675a9bde9e55352626c5991da9954141&lat=${lat}&lon=${lon}&addressdetails=1&format=json`
 }
 
-
-const fetchCityInfo = async(lat, lon) => {
+const fetchCityInfo = async(lat, lon, locallyStoredCity) => {
   const searchInput = document.querySelector(".input_text");
   const card_input = document.querySelector('.card_input')
 
@@ -16,6 +16,8 @@ const fetchCityInfo = async(lat, lon) => {
     return await fetchCityWithInput(searchInput.value);
   } else if (card_input.value !== '' && data.cardsOnly === true) {
     return await fetchCityWithInput(card_input.value);
+  } else if(locallyStoredCity !== undefined) {
+    return await fetchCityWithInput(locallyStoredCity);
   } else {
     const cityNameFromCoords = await fetchONLYCity(lat, lon);
     return await fetchCityWithInput(cityNameFromCoords) 
@@ -46,7 +48,6 @@ async function fetchONLYCity(lat, lon) {
   const cityInfo = await fetch(requestCity(lat, lon), {
     mode: "cors",
   }).then((response) => response.json());
-  
   const address = cityInfo.address;
   if(address.city === undefined) {
     return address.state

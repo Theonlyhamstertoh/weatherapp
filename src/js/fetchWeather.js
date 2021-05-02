@@ -4,9 +4,14 @@ import { getCityTime } from "./fetchCityTime";
 import fetchCityInfo from "./fetchCityName";
 import { data } from "./objectArray";
 
-async function getNecessaryWeatherData(coords) {
+async function getNecessaryWeatherData(coords, localStoredCity) {
   const weatherData = await getWeatherData(coords);
-  const cityInfo = await fetchCityInfo(coords.lat, coords.lon);
+  let cityInfo;
+  if(localStoredCity !== undefined) {
+    cityInfo = await fetchCityInfo(undefined, undefined, localStoredCity);
+  } else {
+    cityInfo = await fetchCityInfo(coords.lat, coords.lon);
+  }
   const Unixtime = getCityTime(weatherData.timezone_offset);
   return { weatherData, cityInfo, Unixtime };
 }

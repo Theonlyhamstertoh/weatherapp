@@ -13,16 +13,16 @@ allCheckBox.forEach((el) => {
 });
 
 
-displayWeather(data.mainSearch)
+displayWeather(data.mainSearch.coords, data.mainSearch.city)
 
 let index = 0;
-const interval = setInterval(() => {+
+const interval = setInterval(() => {
   data.cardsOnly = true;
   if(data.cards === undefined || data.cards.length <= index ) {
     clearInterval(interval);
     data.cardsOnly = false;
   } else {
-    displayCards(data.cards[index].coords, true, data.cards[index].id );
+    displayCards(data.cards[index].coords, true, data.cards[index].id, data.cards[index].city );
   }
   index++;
 }, 600)

@@ -7,12 +7,19 @@ const fetchLocal = () => {
 
   if(weatherData === null) {
     return {
-      cards: [{id: "381c", coords: {lon: -0.1257, lat: 51.5085}}, {id: "a090", coords: {lon: 116.3972, lat: 39.9075}}],
+      cards: [{id: "93a6", coords: {lon: 121.4581, lat: 31.2222}, city: "Shanghai"},
+      {id: "f360", coords: {lon: 37.6156, lat: 55.7522}, city: "Moscow"},
+      {id: "30b3", coords: {lon: -118.0373, lat: 33.817}, city: "Cypress"},
+      {id: "3da5", coords: {lon: 19.0399, lat: 47.498}, city: "Budapest"},],
       settings: {
         units: "imperial",
         clockSystem: "12",
       },
-    mainSearch: {lat: 51.5074,lon: 0.1278},
+
+    mainSearch: {
+      city: "Rome",
+      coords: {lat: 41.902782, lon: 12.496366}
+    },
     cardsOnly: false,
     }
   } else {

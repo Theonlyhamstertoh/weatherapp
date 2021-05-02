@@ -5,8 +5,9 @@ import {getNecessaryWeatherData} from "./fetchWeather";
 import { getTimeDifference } from "./fetchCityTime";
 import { findExtraInfoIcons } from "./getImages";
 
-const displayCards = async (coords, onlyLocalData, alreadyHaveID) => {
-  const get = await getNecessaryWeatherData(coords);
+const displayCards = async (coords, onlyLocalData, alreadyHaveID, localStoredCity) => {
+  const get = await getNecessaryWeatherData(coords, localStoredCity);
+
   const todayData = get.weatherData.current;
   const city = get.cityInfo[0];
   const timeDifference = getTimeDifference(get.Unixtime);
@@ -41,7 +42,7 @@ const displayCards = async (coords, onlyLocalData, alreadyHaveID) => {
   cardSearchInput.value = '';
   data.cardsOnly = false;
   if(onlyLocalData === true) return;
-  data.cards.push({id, coords})
+  data.cards.push({id, coords, city})
   saveToLocal(data);
 } 
 

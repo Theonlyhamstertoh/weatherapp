@@ -4,14 +4,16 @@ import displayWeekData from "./displayWeek";
 import displayHourlyData from "./displayHourly";
 import { displayCurrentData, displayExtraCurrentData } from "./displayCurrent";
 import {weatherItems, data} from "./objectArray";
+import fetchCityInfo from "./fetchCityName";
 
 
 
 
 
 
-const displayWeather = async (coords) => {
-  const get = await getNecessaryWeatherData(coords);
+const displayWeather = async (coords, localStoredMain) => {
+  const get = await getNecessaryWeatherData(coords, localStoredMain);
+  console.log(get)
   // clear previous before loading the new weather data
   clearPrevious();
   // display the data
@@ -20,7 +22,8 @@ const displayWeather = async (coords) => {
   displayWeekData(get.weatherData.daily);
   displayHourlyData(get);
   
-  data.mainSearch = coords;
+  data.mainSearch.city = get.cityInfo[0];
+  data.mainSearch.coords = coords;
   saveToLocal(data);
 };
 
