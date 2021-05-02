@@ -41,6 +41,8 @@ const cardSearchInput = document.querySelector(".card_input");
 const searchButton = document.querySelector(".input_button");
 searchButton.addEventListener("click", () => {
   fetchUserInputLocation.coords(searchInput);
+  searchButton.disabled = true;
+  window.setTimeout(() => searchButton.disabled = false, 500)
 });
 
 const addCardButton = document.querySelector(".addButton");
@@ -68,3 +70,11 @@ saveSetting.addEventListener('click', () => {
 })
 
 
+const data_wrapper = document.querySelector('.data_wrapper');
+const loadingIcon = document.querySelector('.loadingIcon');
+
+data_wrapper.style.display = 'none';
+window.setTimeout(() => {
+  data_wrapper.style.display = 'flex';
+loadingIcon.style.display = 'none';
+}, 2000)

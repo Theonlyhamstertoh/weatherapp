@@ -5,7 +5,7 @@
   background-color: #0e1544;
   flex-grow: 1;
   padding-top: 13px;
-  min-width: min-content;
+  min-width: max-content;
 }
 
 .animatedWeatherArea {
@@ -15,7 +15,22 @@
   border: none;
 }
 
+.showError {
+  height: 15px;
+  padding-left: 45px;
+  color: rgb(246, 59, 59);
+  opacity: 0;
+}
 
+.animateOut {
+  animation: animateOut 2s forwards;
+}
+
+
+@keyframes animateOut {
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
 .WI_temp {
 }
 .WI_Area {

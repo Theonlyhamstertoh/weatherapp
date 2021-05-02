@@ -27,6 +27,10 @@ const getWeatherData = async (getCoord) => {
     ).then((response) => response.json());
     return fetchData;
   } catch (err) {
+    const showError = document.querySelector('.showError');
+    showError.textContent = 'Unable to find city';
+    showError.classList.add('animateOut');
+    window.setTimeout(() => showError.classList.remove('animateOut'), 500)
     throw new Error(err);
   }
 };
