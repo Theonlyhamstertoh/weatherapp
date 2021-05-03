@@ -2,6 +2,10 @@
 Link to DEMO: https://theonlyhamstertoh.github.io/weatherapp/
 
 ## Images ##
+![alt text](https://github.com/theonlyhamstertoh/weatherapp/blob/main/src/img/screenshot/mainScreen.png?raw=true)
+
+## Mobile Display ##
+![alt text](https://github.com/theonlyhamstertoh/weatherapp/blob/main/src/img/screenshot/mobileScreen.png?raw=true)
 
 ## Skills learned ##
 * How to work with and fetch API 
