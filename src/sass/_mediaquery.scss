@@ -69,6 +69,10 @@
   .forecast_section {
     padding-bottom: 10px;
   }
+
+  .cityLocationFS {
+    font-size: 27px;
+  } 
 }
 
 @media (min-width: 500px) and (max-width: 1008px) {
@@ -88,6 +92,12 @@
     .WI_e-grid {
       gap: 5px;
     }
+
+    .WI_area {
+      padding: 0px;
+    }
+
+
   }
 
   .WI_tempWrapper {
