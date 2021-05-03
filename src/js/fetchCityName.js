@@ -2,7 +2,7 @@ import { data } from "./index";
 
 // get the location coords
 const requestLocationDetails = (location) => {
-  return `http://api.weatherapi.com/v1/forecast.json?key=4e4430f419224926bda142239212804&q=${location}&aqi=yes`;
+  return `https://api.weatherapi.com/v1/forecast.json?key=4e4430f419224926bda142239212804&q=${location}&aqi=yes`;
 };
 
 // call ONEAPI that gets all the weather data
