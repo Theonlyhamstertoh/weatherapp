@@ -88,7 +88,7 @@ const fetchUserInputLocation = (() => {
   };
 
   const requestCoords = (location) => {
-    return `http://api.openweathermap.org/data/2.5/weather?appid=70d3ce744008d557a872cee31d8820ce&${location}`;
+    return `https://api.openweathermap.org/data/2.5/weather?appid=70d3ce744008d557a872cee31d8820ce&${location}`;
   };
   return { coords };
 })();
