@@ -47,7 +47,6 @@ async function fetchONLYCity(lat, lon) {
   const cityInfo = await fetch(requestCity(lat, lon), {
     mode: "cors",
   }).then((response) => response.json());
-  console.log(cityInfo);
   const address = cityInfo.address;
   if (address.city === undefined) {
     return address.state;

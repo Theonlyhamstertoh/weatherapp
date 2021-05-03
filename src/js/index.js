@@ -56,7 +56,7 @@ const weatherItems = {
     window.setTimeout(() => (searchButton.disabled = false), 500);
   });
 
-  const addCardButton = document.querySelector(".addButton");
+  const addCardButton = document.querySelector(".addbutton");
   addCardButton.addEventListener("click", (e) => {
     if (cardSearchInput === "") return;
     data.cardsOnly = true;

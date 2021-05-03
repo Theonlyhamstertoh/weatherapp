@@ -11,7 +11,6 @@ function displayCurrentData(get) {
   const todayData = get.weatherData.current;
   const Unixtime = get.Unixtime;
   const cityInfo = get.cityInfo;
-  console.log(get.weatherData);
 
   const formatTime = convertClockTime(Unixtime, data.settings.clockSystem);
   const timeDifference = getTimeDifference(Unixtime);
