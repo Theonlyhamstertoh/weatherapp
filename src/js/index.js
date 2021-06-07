@@ -26,7 +26,7 @@ const weatherItems = {
     clock.checked = true;
   }
 
-  // display and undisplay the setting bar. 
+  // display and undisplay the setting bar.
   const settingPage = document.querySelector(".setting");
   const input_setting = document.querySelector(".input_setting");
   input_setting.addEventListener("click", () => {
@@ -60,18 +60,14 @@ const weatherItems = {
   addCardButton.addEventListener("click", (e) => {
     if (cardSearchInput === "") return;
     data.cardsOnly = true;
-    window.setTimeout(
-      () => fetchUserInputLocation.coords(cardSearchInput, true),
-      500
-    );
+    window.setTimeout(() => fetchUserInputLocation.coords(cardSearchInput, true), 500);
   });
 
-  window.addEventListener('keydown', (e) => {
-    if(e.key === 'Enter') {
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
       fetchUserInputLocation.coords(searchInput);
-
     }
-  })
+  });
 })();
 
 (function displayLocalData() {
@@ -85,12 +81,7 @@ const weatherItems = {
       clearInterval(interval);
       data.cardsOnly = false;
     } else {
-      displayCards(
-        data.cards[index].coords,
-        true,
-        data.cards[index].id,
-        data.cards[index].city
-      );
+      displayCards(data.cards[index].coords, true, data.cards[index].id, data.cards[index].city);
     }
     index++;
   }, 600);
@@ -104,7 +95,7 @@ const weatherItems = {
   window.setTimeout(() => {
     data_wrapper.style.display = "flex";
     loadingIcon.style.display = "none";
-  }, 2000);
+  }, 400);
 })();
 
 export { weatherItems, data };
